@@ -13,15 +13,16 @@ import java.util.List;
 
 @RestController
 public class PatientController {
-@Autowired
+    @Autowired
     private PatientServiceImplementation patientServiceImplementation;
 
-@GetMapping("/")
-    public List<Patient> getAll(){
-    return patientServiceImplementation.findAllPatients();
-}
-@PostMapping("/")
-    public Patient savePatient(@RequestBody Patient patient){
-    return patientServiceImplementation.save(patient);
-}
+    @GetMapping("/")
+    public List<Patient> getAll() {
+        return patientServiceImplementation.findAllPatients();
+    }
+
+    @PostMapping("/")
+    public Patient savePatient(@RequestBody Patient patient) {
+        return patientServiceImplementation.save(patient);
+    }
 }

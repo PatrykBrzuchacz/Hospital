@@ -1,5 +1,6 @@
 package pl.softsystem.hospital.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,14 +14,23 @@ import java.util.Set;
 @Getter
 @Setter
 public class Examination {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
     @Enumerated(value = EnumType.STRING)
+    @JsonIgnore
     private ExaminationType examinationType;
+
     private String name;
     @ManyToMany(mappedBy = "examinations")
+
+    @JsonIgnore
     private Set<Patient> patients = new HashSet<>();
     @OneToMany(mappedBy = "examination")
+
+    @JsonIgnore
     private List<Question> questions = new ArrayList<>();
 }
