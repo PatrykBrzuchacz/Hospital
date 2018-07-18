@@ -21,7 +21,6 @@ public class Patient {
     private String name;
 
     private Integer pesel;
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "Patient_Examination",
             joinColumns = @JoinColumn(name = "id_patient", referencedColumnName = "id"),

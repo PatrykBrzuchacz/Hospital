@@ -25,12 +25,10 @@ public class Examination {
     private ExaminationType type;
 
 
-
+@JsonIgnore
     @ManyToMany(mappedBy = "examinations")
-    @JsonIgnore
     private Set<Patient> patients = new HashSet<>();
 
-    @OneToMany(mappedBy = "examination")
-    @JsonIgnore
+    @OneToMany(mappedBy = "id_examination")
     private List<Question> questions = new ArrayList<>();
 }
