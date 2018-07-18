@@ -19,18 +19,18 @@ public class Examination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
 
     @Enumerated(value = EnumType.STRING)
-    @JsonIgnore
-    private ExaminationType examinationType;
+    private ExaminationType type;
 
-    private String name;
+
+
     @ManyToMany(mappedBy = "examinations")
-
     @JsonIgnore
     private Set<Patient> patients = new HashSet<>();
-    @OneToMany(mappedBy = "examination")
 
+    @OneToMany(mappedBy = "examination")
     @JsonIgnore
     private List<Question> questions = new ArrayList<>();
 }

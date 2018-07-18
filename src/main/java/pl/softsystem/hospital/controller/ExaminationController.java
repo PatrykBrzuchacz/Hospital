@@ -16,8 +16,8 @@ public class ExaminationController {
     private ExaminationServiceImplemenetation examinationServiceImplemenetation;
 
     @PostMapping("/examination")
-    public Examination saveExamination (@RequestBody Examination examination){
-        return examinationServiceImplemenetation.save(examination);
+    public Examination saveExamination(@RequestBody Examination examination){
+        return examinationServiceImplemenetation.saveExamination(examination);
     }
 
 

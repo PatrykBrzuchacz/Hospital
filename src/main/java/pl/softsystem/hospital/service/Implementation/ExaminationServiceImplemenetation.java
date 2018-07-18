@@ -12,7 +12,8 @@ public class ExaminationServiceImplemenetation implements ExaminationService {
     @Autowired
     private ExaminationRepository examinationRepository;
 
-    public Examination save(Examination examination){
+    public Examination saveExamination(Examination examination){
+
         return examinationRepository.save(examination);
     }
 

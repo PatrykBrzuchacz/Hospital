@@ -4,5 +4,5 @@ import pl.softsystem.hospital.model.Examination;
 
 public interface ExaminationService {
 
-    Examination save(Examination examination);
+    Examination saveExamination(Examination examination);
 }
