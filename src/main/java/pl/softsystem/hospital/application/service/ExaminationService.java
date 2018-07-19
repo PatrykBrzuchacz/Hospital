@@ -4,8 +4,9 @@ import pl.softsystem.hospital.domain.model.Examination;
 import pl.softsystem.hospital.domain.model.ExaminationType;
 
 public interface ExaminationService {
-
     Examination saveExamination(Examination examination);
-Examination findById(Long id);
-    Long getIdByType(ExaminationType examination);
+
+    Examination findById(Long id);
+
+    Examination getExaminationByType(ExaminationType type);
 }

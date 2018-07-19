@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import pl.softsystem.hospital.domain.model.Examination;
 
 public interface ExaminationRepository extends JpaRepository<Examination, Long> {
-    Long getIdByType(Examination examination);
+    Examination getExaminationByType(ExaminationType type);
 
 }
