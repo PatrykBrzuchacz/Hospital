@@ -1,8 +1,7 @@
-package pl.softsystem.hospital.repository;
+package pl.softsystem.hospital.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.softsystem.hospital.model.Examination;
-import pl.softsystem.hospital.model.ExaminationType;
+import pl.softsystem.hospital.domain.model.Examination;
 
 public interface ExaminationRepository extends JpaRepository<Examination, Long> {
     Long getIdByType(Examination examination);

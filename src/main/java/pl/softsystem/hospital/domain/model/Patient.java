@@ -1,12 +1,11 @@
-package pl.softsystem.hospital.model;
+package pl.softsystem.hospital.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -26,4 +25,10 @@ public class Patient {
             joinColumns = @JoinColumn(name = "id_patient", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_examination", referencedColumnName = "id"))
     private Set<Examination> examinations = new HashSet<>();
+
+    public void addExamination(Examination examination) {
+        if (examination != null) {
+            examinations.add(examination);
+        }
+    }
 }

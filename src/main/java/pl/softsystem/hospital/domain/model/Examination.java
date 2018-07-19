@@ -1,4 +1,4 @@
-package pl.softsystem.hospital.model;
+package pl.softsystem.hospital.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -25,10 +25,10 @@ public class Examination {
     private ExaminationType type;
 
 
-@JsonIgnore
+    @JsonIgnore
     @ManyToMany(mappedBy = "examinations")
     private Set<Patient> patients = new HashSet<>();
-@JsonIgnore
-    @OneToMany(mappedBy = "id_examination")
+    @JsonIgnore
+    @OneToMany(mappedBy = "id_examination", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();
 }

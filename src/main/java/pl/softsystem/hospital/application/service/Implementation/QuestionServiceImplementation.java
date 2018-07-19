@@ -1,13 +1,10 @@
-package pl.softsystem.hospital.service.Implementation;
+package pl.softsystem.hospital.application.service.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.softsystem.hospital.model.Examination;
-import pl.softsystem.hospital.model.Question;
-import pl.softsystem.hospital.repository.QuestionRepository;
-import pl.softsystem.hospital.service.QuestionService;
-
-import javax.management.QueryExp;
+import pl.softsystem.hospital.application.service.QuestionService;
+import pl.softsystem.hospital.domain.model.Question;
+import pl.softsystem.hospital.domain.repository.QuestionRepository;
 
 @Service
 public class QuestionServiceImplementation implements QuestionService {

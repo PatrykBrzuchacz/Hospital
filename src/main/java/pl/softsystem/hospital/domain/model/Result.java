@@ -1,6 +1,8 @@
-package pl.softsystem.hospital.model;
+package pl.softsystem.hospital.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class Result {
     @Id
     @GeneratedValue
@@ -19,4 +22,11 @@ public class Result {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_patient")
     private Patient patient;
+
+    public Result(String value, Question question, Patient patient) {
+        this.value = value;
+        this.question = question;
+        this.patient = patient;
+    }
+
 }

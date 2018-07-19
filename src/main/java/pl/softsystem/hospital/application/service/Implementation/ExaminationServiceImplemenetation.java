@@ -1,11 +1,11 @@
-package pl.softsystem.hospital.service.Implementation;
+package pl.softsystem.hospital.application.service.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.softsystem.hospital.model.Examination;
-import pl.softsystem.hospital.model.ExaminationType;
-import pl.softsystem.hospital.repository.ExaminationRepository;
-import pl.softsystem.hospital.service.ExaminationService;
+import pl.softsystem.hospital.application.service.ExaminationService;
+import pl.softsystem.hospital.domain.model.Examination;
+import pl.softsystem.hospital.domain.model.ExaminationType;
+import pl.softsystem.hospital.domain.repository.ExaminationRepository;
 
 @Service
 public class ExaminationServiceImplemenetation implements ExaminationService {
