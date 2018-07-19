@@ -4,4 +4,6 @@ import pl.softsystem.hospital.model.Question;
 
 public interface QuestionService {
     Question saveQuestion(Question question);
+
+
 }

@@ -5,4 +5,5 @@ import pl.softsystem.hospital.model.Examination;
 public interface ExaminationService {
 
     Examination saveExamination(Examination examination);
+    Examination findById(Long id);
 }

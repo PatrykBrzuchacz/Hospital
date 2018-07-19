@@ -12,9 +12,16 @@ public class ExaminationServiceImplemenetation implements ExaminationService {
     @Autowired
     private ExaminationRepository examinationRepository;
 
-    public Examination saveExamination(Examination examination){
 
+    @Override
+    public Examination saveExamination(Examination examination){
         return examinationRepository.save(examination);
+    }
+
+
+    @Override
+    public Examination findById(Long id) {
+        return examinationRepository.findById(id).get();
     }
 
 
