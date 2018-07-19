@@ -17,12 +17,22 @@ public class Question {
     @GeneratedValue
     private Long id;
     private String name;
-@JsonIgnore
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_examination")
     private Examination id_examination;
-@JsonIgnore
+
+    public void setId_examination(Examination id_examination) {
+        this.id_examination = id_examination;
+    }
+
+    @JsonIgnore
     @OneToMany(mappedBy = "question")
     private Set<Result> results = new HashSet<>();
 
+public Question createQuestion(){
+    Question question = new Question();
+    question.setId_examination(this.id_examination);
+    return question;
+}
 }

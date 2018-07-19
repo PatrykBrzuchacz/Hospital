@@ -28,7 +28,7 @@ public class Examination {
 @JsonIgnore
     @ManyToMany(mappedBy = "examinations")
     private Set<Patient> patients = new HashSet<>();
-
+@JsonIgnore
     @OneToMany(mappedBy = "id_examination")
     private List<Question> questions = new ArrayList<>();
 }
