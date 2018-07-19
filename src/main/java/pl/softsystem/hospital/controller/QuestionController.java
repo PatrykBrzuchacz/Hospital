@@ -15,8 +15,9 @@ import pl.softsystem.hospital.service.QuestionService;
 @RestController
 public class QuestionController {
 
-@Autowired
+    @Autowired
     private QuestionServiceImplementation questionServiceImplementation;
+<<<<<<< HEAD
     @Autowired
     private ExaminationServiceImplemenetation examinationServiceImplemenetation;
 @PostMapping("/question/{type}")
@@ -26,5 +27,31 @@ Long id = examinationServiceImplemenetation.getIdByType(type);
     System.out.println(id);
     return questionServiceImplementation.saveQuestion(question);
 }
+=======
+
+    @Autowired
+    private ExaminationServiceImplemenetation examinationServiceImplemenetation;
+
+
+    @PostMapping("/question")
+    public Question saveQuestion(@RequestBody Question question) {
+        return questionServiceImplementation.saveQuestion(question);
+    }
+
+    @PostMapping("examination/{id}/add")
+    public Question add(@RequestBody Question question, @PathVariable("id") Long examinationId) {
+        question.setId_examination(examinationServiceImplemenetation.findById(examinationId));
+        return questionServiceImplementation.saveQuestion(question);
+
+    }
+
+>>>>>>> feb90f9ffe3bf80c055060c954b3fc19606785a4
 
 }
+
+
+//    @PostMapping("/api/custom/albums/{id}/tracks")
+//    public Track add(@RequestBody Track track, @PathVariable("id") Long albumId) {
+//        track.setAlbum(albumService.findById(albumId));
+//        return trackService.save(track);
+//    }

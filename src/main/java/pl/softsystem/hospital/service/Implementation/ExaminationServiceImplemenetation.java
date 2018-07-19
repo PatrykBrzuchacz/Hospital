@@ -13,8 +13,9 @@ public class ExaminationServiceImplemenetation implements ExaminationService {
     @Autowired
     private ExaminationRepository examinationRepository;
 
-    public Examination saveExamination(Examination examination){
 
+    @Override
+    public Examination saveExamination(Examination examination){
         return examinationRepository.save(examination);
     }
 
@@ -24,6 +25,7 @@ public class ExaminationServiceImplemenetation implements ExaminationService {
     }
 
 
+<<<<<<< HEAD
 /*
 public Examination getIdByType(Examination examination){
 return examinationRepository.getIdByType(examination);
@@ -33,6 +35,14 @@ return examinationRepository.getIdByType(examination);
     public Long getIdByType(Examination examination){
         return examinationRepository.getIdByType(examination);
 }
+=======
+    @Override
+    public Examination findById(Long id) {
+        return examinationRepository.findById(id).get();
+    }
+
+
+>>>>>>> feb90f9ffe3bf80c055060c954b3fc19606785a4
 
 
 
