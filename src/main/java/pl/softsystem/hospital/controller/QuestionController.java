@@ -10,7 +10,6 @@ import pl.softsystem.hospital.model.ExaminationType;
 import pl.softsystem.hospital.model.Question;
 import pl.softsystem.hospital.service.Implementation.ExaminationServiceImplemenetation;
 import pl.softsystem.hospital.service.Implementation.QuestionServiceImplementation;
-import pl.softsystem.hospital.service.QuestionService;
 
 @RestController
 public class QuestionController {
@@ -21,14 +20,12 @@ public class QuestionController {
     @Autowired
     private ExaminationServiceImplemenetation examinationServiceImplemenetation;
 
-@PostMapping("/question/{type}")
-    public Question saveQuestion(@RequestBody Question question, @PathVariable ExaminationType type){
-    System.out.println("nica");
-Long id = examinationServiceImplemenetation.getIdByType(type);
-    System.out.println(id);
-    return questionServiceImplementation.saveQuestion(question);
-}
-
+    @PostMapping("/question/{type}")
+    public Question saveQuestion(@RequestBody Question question, @PathVariable("type") ExaminationType type) {
+        Examination ex = examinationServiceImplemenetation.getExaminationByType(type);
+        question.setId_examination(ex);
+        return questionServiceImplementation.saveQuestion(question);
+    }
 
 
     @PostMapping("/question")

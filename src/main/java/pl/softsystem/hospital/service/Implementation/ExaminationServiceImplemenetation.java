@@ -15,25 +15,18 @@ public class ExaminationServiceImplemenetation implements ExaminationService {
 
 
     @Override
-    public Examination saveExamination(Examination examination){
+    public Examination saveExamination(Examination examination) {
         return examinationRepository.save(examination);
     }
 
-    @Override
-    public Long getIdByType(ExaminationType examination) {
-        return null;
-    }
 
-    public Long getIdByType(Examination examination){
-        return examinationRepository.getIdByType(examination);
-}
+    public Examination getExaminationByType(ExaminationType type) {
+        return examinationRepository.getExaminationByType(type);
+    }
 
     public Examination findById(Long id) {
         return examinationRepository.findById(id).get();
     }
-
-
-
 
 
 }

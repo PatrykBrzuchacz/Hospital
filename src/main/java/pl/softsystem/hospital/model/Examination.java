@@ -23,12 +23,14 @@ public class Examination {
 
     @Enumerated(value = EnumType.STRING)
     private ExaminationType type;
-
-
-@JsonIgnore
+    @JsonIgnore
     @ManyToMany(mappedBy = "examinations")
     private Set<Patient> patients = new HashSet<>();
-@JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "id_examination")
     private List<Question> questions = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
 }
