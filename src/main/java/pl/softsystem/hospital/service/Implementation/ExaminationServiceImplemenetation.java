@@ -24,25 +24,15 @@ public class ExaminationServiceImplemenetation implements ExaminationService {
         return null;
     }
 
-
-<<<<<<< HEAD
-/*
-public Examination getIdByType(Examination examination){
-return examinationRepository.getIdByType(examination);
-}
-*/
-
     public Long getIdByType(Examination examination){
         return examinationRepository.getIdByType(examination);
 }
-=======
-    @Override
+
     public Examination findById(Long id) {
         return examinationRepository.findById(id).get();
     }
 
 
->>>>>>> feb90f9ffe3bf80c055060c954b3fc19606785a4
 
 
 
