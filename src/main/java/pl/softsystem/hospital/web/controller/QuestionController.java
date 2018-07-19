@@ -2,6 +2,7 @@ package pl.softsystem.hospital.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.softsystem.hospital.domain.model.Examination;
 import pl.softsystem.hospital.domain.model.ExaminationType;
 import pl.softsystem.hospital.domain.model.Question;
 import pl.softsystem.hospital.application.service.Implementation.ExaminationServiceImplemenetation;
@@ -19,9 +20,8 @@ public class QuestionController {
 
     @PostMapping("/question/{type}")
     public Question saveQuestion(@RequestBody Question question, @PathVariable ExaminationType type) {
-        System.out.println("nica");
-        Long id = examinationServiceImplemenetation.getIdByType(type);
-        System.out.println(id);
+        Examination examination = examinationServiceImplemenetation.getExaminationByType(type);
+        question.setExamination(examination);
         return questionServiceImplementation.saveQuestion(question);
     }
 
@@ -33,7 +33,7 @@ public class QuestionController {
 
     @PostMapping("examination/{id}/add")
     public Question add(@RequestBody Question question, @PathVariable("id") Long examinationId) {
-        question.setId_examination(examinationServiceImplemenetation.findById(examinationId));
+        question.setExamination(examinationServiceImplemenetation.findById(examinationId));
         return questionServiceImplementation.saveQuestion(question);
     }
 
