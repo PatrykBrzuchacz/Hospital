@@ -1,0 +1,29 @@
+<ul class="nav nav-pills ">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="#">List of patients</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" routerLink="/examinationList">Examinations</a>
+    <router-outlet></router-outlet>
+  </li>
+  </ul>
+
+<div class="container">
+
+<table class="table table-striped">
+<thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Type</th>
+
+</thead>
+<tbody>
+    <tr *ngFor="let examination of examinations">
+        <td>{{examination.id}}</td>
+        <td>{{examination.name}}</td>
+        <td>{{examination.type}}</td>
+    </tr>
+</tbody>
+</table>
+</div>
+

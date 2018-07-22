@@ -21,4 +21,7 @@ public class PatientServiceImplementation implements PatientService {
     public Patient save(Patient patient) {
         return patientRepository.save(patient);
     }
+    public void delete(Long id){
+        patientRepository.deleteById(id);
+    }
 }
