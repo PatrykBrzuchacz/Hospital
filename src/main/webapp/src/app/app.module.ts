@@ -11,6 +11,7 @@ import{PatientService} from './service/patient.service';
 import './styles/css/bootstrap.min.css';
 import { ListExaminationComponent } from './components/list-examination/list-examination.component';
 import { ListQuestionsComponent } from './components/list-questions/list-questions.component';
+import { ExaminationService } from './service/examination.service';
  const appRoutes:Routes=[
    {path:'', component:ListpatientComponent},
    {path:'addPatient', component:AddPatientComponent},
@@ -32,7 +33,7 @@ import { ListQuestionsComponent } from './components/list-questions/list-questio
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PatientService],
+  providers: [PatientService,ExaminationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
