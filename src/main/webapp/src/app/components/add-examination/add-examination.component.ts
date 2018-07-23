@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {Examination} from '../../examination';
 import {ExaminationService} from '../../service/examination.service';
 import{Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
 
 import { ActivatedRoute, Params, } from '@angular/router';
+import { MyDialogComponent } from '../../my-dialog/my-dialog.component';
+
 
 @Component({
   selector: 'app-add-examination',
@@ -16,7 +19,7 @@ export class AddExaminationComponent implements OnInit {
   private updateid: Number;
 
 
-  constructor(private _examinationService:ExaminationService,private activatedRouter: ActivatedRoute, private router: Router) { }
+  constructor(private _examinationService:ExaminationService,private activatedRouter: ActivatedRoute, private router: Router,public dialog: MatDialog) { }
 
   ngOnInit() {
     this.activatedRouter.paramMap.subscribe(params=>{
@@ -48,6 +51,15 @@ export class AddExaminationComponent implements OnInit {
       });
     }
 
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(MyDialogComponent, {
+       });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+          });
   }
 
 }

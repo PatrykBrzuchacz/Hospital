@@ -10,6 +10,7 @@
           <label for="pesel">Type</label>
           <input type="text" name="type" class="form-control" [(ngModel)]="examination.type">
       </div>
+      <button mat-raised-button (click)="openDialog()"></button>
       <app-list-questions [examination]="examination"></app-list-questions>
 
       <input type="submit" value="save" class="btn btn-success">
