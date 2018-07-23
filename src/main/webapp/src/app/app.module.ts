@@ -20,8 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
    {path:'', component:ListpatientComponent},
    {path:'addPatient', component:AddPatientComponent},
    {path:'examinationList', component:ListExaminationComponent},
-   {path:'examinationList/add/:id', component:AddExaminationComponent},
-   {path:'examinationList/add', component:AddExaminationComponent},
+   {path:'examinationList/upsert/:id', component:AddExaminationComponent},
+   {path:'examinationList/upsert', component:AddExaminationComponent},
  ];
 
 @NgModule({

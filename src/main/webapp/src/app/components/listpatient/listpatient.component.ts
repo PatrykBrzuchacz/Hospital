@@ -15,7 +15,6 @@ private patients:Patient[];
   ngOnInit() {
     this._patientService.getPatients().subscribe((patients)=>{console.log(patients);
       this.patients=patients;
-    
     },
     (error)=>{console.log(error)}
     )
