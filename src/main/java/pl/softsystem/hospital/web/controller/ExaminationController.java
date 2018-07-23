@@ -27,6 +27,7 @@ public class ExaminationController {
     }
 
     @PostMapping
+    @PostMapping("/examinations")
     public Examination saveExamination(@RequestBody Examination examination){
         return examinationServiceImplemenetation.saveExamination(examination);
     }

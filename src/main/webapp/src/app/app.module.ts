@@ -13,11 +13,13 @@ import { ListExaminationComponent } from './components/list-examination/list-exa
 import { ListQuestionsComponent } from './components/list-questions/list-questions.component';
 import { ExaminationService } from './service/examination.service';
 import { QuestionService } from './service/question.service';
+import { AddExaminationComponent } from './components/add-examination/add-examination.component';
  const appRoutes:Routes=[
    {path:'', component:ListpatientComponent},
    {path:'addPatient', component:AddPatientComponent},
    {path:'examinationList', component:ListExaminationComponent},
    {path:'examinationList/:id/questions', component:ListQuestionsComponent},
+   {path:'examinationList/add', component:AddExaminationComponent},
  ];
 
 @NgModule({
@@ -27,6 +29,8 @@ import { QuestionService } from './service/question.service';
     AddPatientComponent,
     ListExaminationComponent,
     ListQuestionsComponent
+    ListQuestionsComponent,
+    AddExaminationComponent
   ],
   imports: [
     BrowserModule,

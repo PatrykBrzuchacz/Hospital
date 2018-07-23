@@ -17,6 +17,8 @@ private examinations:Examination[];
   ngOnInit() {
     this._examinationService.getExaminations().subscribe((examinations)=>{console.log(examinations);
       this.examinations=examinations;
+ //   this._examinationService.getExaminations().subscribe((examinations)=>{console.log(examinations);
+     // this.examinations=examinations;
    
     },
     (error)=>{console.log(error)}
@@ -25,4 +27,30 @@ private examinations:Examination[];
 //onSelect(examination){
 //  this._router.navigate(['/examinationList',examination.id, 'questions']);
   //}
+}}
+=======
+    }//,
+  //  (error)=>{console.log(error)}
+  //  )
+  //}
+onSelect(examination){
+  this._router.navigate(['/examinationList',examination.id, 'questions']);
+
+  }
+
+  //createP(){
+  //  let patient = new Patient();
+  //  this._patientService.setter(patient);
+  //  this._router.navigate(['/addPatient']);
+ // }
+
+  createExamination(){
+    let examination = new Examination();
+    this._examinationService.setter(examination);
+    this._router.navigate(['/examinationList/add']);
+  }
+
+
+
+
 }

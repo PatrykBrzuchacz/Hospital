@@ -1,0 +1,15 @@
+<div class="container">
+
+  <form (ngSubmit)="processFormExamination()">
+
+      <div class="form group">
+          <label for="name">Name</label>
+          <input type="text" name="name" class="form-control" [(ngModel)]="examination.name">
+      </div>
+      <div class="form group">
+          <label for="pesel">Type</label>
+          <input type="text" name="type" class="form-control" [(ngModel)]="examination.type">
+      </div>
+      <input type="submit" value="save" class="btn btn-success">
+  </form>
+</div>
