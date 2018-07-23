@@ -15,9 +15,10 @@ import { ExaminationService } from './service/examination.service';
 import { QuestionService } from './service/question.service';
 import { AddExaminationComponent } from './components/add-examination/add-examination.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule, MatCheckboxModule, MatTableModule, MatDialogModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
+
+import { MatDialogModule } from '@angular/material';
 
  const appRoutes:Routes=[
    {path:'', component:ListpatientComponent},
@@ -35,6 +36,7 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     ListExaminationComponent,
     ListQuestionsComponent,
     AddExaminationComponent,
+    MyDialogComponent
       ],
   imports: [
     BrowserModule,
@@ -45,9 +47,7 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     MatDialogModule,
     BrowserAnimationsModule,
   ],
-    entryComponents:[
-      MyDialogComponent
-    ],
+     entryComponents:[MyDialogComponent],
      
   providers: [PatientService,ExaminationService, QuestionService],
   bootstrap: [AppComponent],

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Examination} from '../../examination';
 import {ExaminationService} from '../../service/examination.service';
 import{Router} from '@angular/router';
-import {MatDialog} from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { ActivatedRoute, Params, } from '@angular/router';
 import { MyDialogComponent } from '../../my-dialog/my-dialog.component';
@@ -19,7 +19,8 @@ export class AddExaminationComponent implements OnInit {
   private updateid: Number;
 
 
-  constructor(private _examinationService:ExaminationService,private activatedRouter: ActivatedRoute, private router: Router,public dialog: MatDialog) { }
+  constructor(private _examinationService:ExaminationService,private activatedRouter: ActivatedRoute, 
+    private router: Router,public dialog: MatDialog) { }
 
   ngOnInit() {
     this.activatedRouter.paramMap.subscribe(params=>{
@@ -33,9 +34,7 @@ export class AddExaminationComponent implements OnInit {
     this.examination=this._examinationService.getter();
   })
 }
-
  
-
   processFormExamination(){
     if(this.examination.id){
       this._examinationService.createExamination(this.examination).subscribe((examination)=>{
@@ -53,13 +52,13 @@ export class AddExaminationComponent implements OnInit {
 
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(MyDialogComponent, {
-       });
+  MyDialogRef: MatDialogRef<MyDialogComponent>;
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-          });
+  openDialog() {
+    this.MyDialogRef = this.dialog.open(MyDialogComponent,{
+      hasBackdrop: false
+    });
   }
 
+  
 }
