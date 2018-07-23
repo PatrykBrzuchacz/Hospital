@@ -15,21 +15,17 @@ private examinations:Examination[];
   constructor(private _examinationService:ExaminationService, private _router:Router) { }
 
   ngOnInit() {
-    this._examinationService.getExaminations().subscribe((examinations)=>{console.log(examinations);
-      this.examinations=examinations;
- //   this._examinationService.getExaminations().subscribe((examinations)=>{console.log(examinations);
-     // this.examinations=examinations;
+   this._examinationService.getExaminations().subscribe((examinations)=>{console.log(examinations);
    
-    },
-    (error)=>{console.log(error)}
-    )
+
   }
+
 //onSelect(examination){
 //  this._router.navigate(['/examinationList',examination.id, 'questions']);
   //}
-}}
-=======
-    }//,
+
+
+    //,
   //  (error)=>{console.log(error)}
   //  )
   //}
@@ -54,3 +50,4 @@ onSelect(examination){
 
 
 }
+
