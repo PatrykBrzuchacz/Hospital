@@ -5,23 +5,20 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from 'rxjs/Observable';
 import{Question}  from '../question';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
 
-  private baseUrl:string='http://localhost:8080/api';
-  private headers = new Headers({'Content-Type':'application/json'});
-  private options= new RequestOptions({headers:this.headers});
-  private question = new Question();
-    constructor(private _http:Http) {
-     }
-     getQuestions(id:Number){
-      return this._http.get(this.baseUrl+'/question/'+id,this.options).map((response:Response)=>response.json())
-      .catch(this.errorHandler);
+  private baseUrlProxyShouldBe: string='http://localhost:8080/'; //todo proxy
+
+  private baseUrl = this.baseUrlProxyShouldBe + 'api/questions/';
+    
+  constructor(private http: HttpClient) {
   }
-  errorHandler(error:Response){
-    return Observable.throw(error||"SERVER ERROR");
-    }
-  
+
+  getQuestions(id: Number): Observable<Question[]> {
+    return this.http.get<Question[]>(this.baseUrl + '/question/' + id);
+  }  
 }

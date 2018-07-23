@@ -14,11 +14,13 @@ import { ListQuestionsComponent } from './components/list-questions/list-questio
 import { ExaminationService } from './service/examination.service';
 import { QuestionService } from './service/question.service';
 import { AddExaminationComponent } from './components/add-examination/add-examination.component';
+import { HttpClientModule } from '@angular/common/http';
+
  const appRoutes:Routes=[
    {path:'', component:ListpatientComponent},
    {path:'addPatient', component:AddPatientComponent},
    {path:'examinationList', component:ListExaminationComponent},
-   {path:'examinationList/:id/questions', component:ListQuestionsComponent},
+   {path:'examinationList/add/:id', component:AddExaminationComponent},
    {path:'examinationList/add', component:AddExaminationComponent},
  ];
 
@@ -34,6 +36,7 @@ import { AddExaminationComponent } from './components/add-examination/add-examin
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],

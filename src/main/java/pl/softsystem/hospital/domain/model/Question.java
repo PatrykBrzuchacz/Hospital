@@ -17,7 +17,8 @@ public class Question {
     private Long id;
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+@JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_examination")
     private Examination examination;
 

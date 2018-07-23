@@ -18,14 +18,16 @@ export class ExaminationService {
    return this._http.get(this.baseUrl+'/examinations',this.options).map((response:Response)=>response.json())
    .catch(this.errorHandler);
 }
+
+getExaminationWithQuestions(id: Number): Observable<Examination> {
+  return this._http.get(this.baseUrl + '/examinations/' + id, this.options)
+    .map((response:Response)=>response.json());
+}
+
 errorHandler(error:Response){
   return Observable.throw(error||"SERVER ERROR");
   }
 
-  //createPatient(patient:Patient){
-   // return this._http.post(this.baseUrl+'/patients',JSON.stringify(patient), this.options).map((response:Response)=>response.json())
-   // .catch(this.errorHandler);
-  //}
 
   createExamination(examination:Examination){
     return this._http.post(this.baseUrl+'/examinations',JSON.stringify(examination), this.options).map((response:Response)=>response.json())

@@ -1,39 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {QuestionService} from '../../service/question.service';
 import{Question} from '../../question';
 import{Router} from '@angular/router';
 import { Examination } from '../../examination';
 import { ActivatedRoute, Params, } from '@angular/router';
+import { ExaminationService } from '../../service/examination.service';
 @Component({
   selector: 'app-list-questions',
   templateUrl: './list-questions.component.html',
   styleUrls: ['./list-questions.component.scss']
 })
 export class ListQuestionsComponent implements OnInit {
-  private questions:Question[];
-  private examination:Examination[];
-  id;
-  constructor(private _questionService:QuestionService, private _router:ActivatedRoute, private route:ActivatedRoute) { }
-  ngOnInit() {
-     this.route.paramMap.subscribe(params=>{
-      console.log(params.get('id'));
-       this.id=params.get('id');
-       this._questionService.getQuestions(this.id);
-     });
-    // this._router.params.forEach((params: Params) => {
-          ///let id = +params['id']; // (+) converts string 'id' to a number
-        // this._questionService.getQuestions(this.id);
-  //this.id=this._router.snapshot.params['id'];
-    // this._questionService.getQuestions(this.id);
-     //   this._questionService.getQuestion(this.examination.id).subscribe((examinations)=>{console.log(examinations);
-    //  this.questions=this.questions;
-  }
-};
- //   this._questionService.getQuestion(this.examination.id).subscribe((examinations)=>{console.log(examinations);
-    //  this.questions=this.questions;
-   
-  //  },
-  //  (error)=>{console.log(error)}
-  //  )
-  
+  @Input() examination:Examination;
 
+  constructor() { }
+  
+  ngOnInit() {
+    //  this._router.paramMap.subscribe(params=>{
+    //    this.updateid = parseInt(params.get('id'));
+    //    this.examinationService.getExaminationWithQuestions(this.updateid).subscribe(result => this.examination = result)
+  // })
+};
+
+}
