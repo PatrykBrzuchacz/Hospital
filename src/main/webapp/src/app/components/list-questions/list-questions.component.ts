@@ -12,18 +12,22 @@ import { ActivatedRoute, Params, } from '@angular/router';
 export class ListQuestionsComponent implements OnInit {
   private questions:Question[];
   private examination:Examination[];
-  uid=1;
+  id;
   constructor(private _questionService:QuestionService, private _router:ActivatedRoute, private route:ActivatedRoute) { }
   ngOnInit() {
-     // this._router.params.forEach((params: Params) => {
-       //   let id = +params['id']; // (+) converts string 'id' to a number
+     this.route.paramMap.subscribe(params=>{
+      console.log(params.get('id'));
+       this.id=params.get('id');
+       this._questionService.getQuestions(this.id);
+     });
+    // this._router.params.forEach((params: Params) => {
+          ///let id = +params['id']; // (+) converts string 'id' to a number
         // this._questionService.getQuestions(this.id);
-  this.uid=+this._router.snapshot.params.get('id');
-  this._questionService.getQuestions(this.uid).subscribe((questions)=>{console.log(questions);
+  //this.id=this._router.snapshot.params['id'];
     // this._questionService.getQuestions(this.id);
      //   this._questionService.getQuestion(this.examination.id).subscribe((examinations)=>{console.log(examinations);
     //  this.questions=this.questions;
-  })
+  }
 };
  //   this._questionService.getQuestion(this.examination.id).subscribe((examinations)=>{console.log(examinations);
     //  this.questions=this.questions;
@@ -32,4 +36,4 @@ export class ListQuestionsComponent implements OnInit {
   //  (error)=>{console.log(error)}
   //  )
   
-}
+

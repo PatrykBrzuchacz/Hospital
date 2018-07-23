@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import{Examination}  from '../examination';
 @Injectable()
 export class ExaminationService {
+  
   private baseUrl:string='http://localhost:8080/api';
   private headers = new Headers({'Content-Type':'application/json'});
   private options= new RequestOptions({headers:this.headers});
@@ -20,10 +21,12 @@ export class ExaminationService {
 errorHandler(error:Response){
   return Observable.throw(error||"SERVER ERROR");
   }
+
   //createPatient(patient:Patient){
    // return this._http.post(this.baseUrl+'/patients',JSON.stringify(patient), this.options).map((response:Response)=>response.json())
    // .catch(this.errorHandler);
   //}
+
   createExamination(examination:Examination){
     return this._http.post(this.baseUrl+'/examinations',JSON.stringify(examination), this.options).map((response:Response)=>response.json())
    // .catch(this.errorHandler);

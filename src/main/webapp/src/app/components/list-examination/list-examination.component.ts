@@ -16,6 +16,7 @@ private examinations:Examination[];
 
   ngOnInit() {
    this._examinationService.getExaminations().subscribe((examinations)=>{console.log(examinations);
+     this.examinations=examinations;})
    
 
   }
@@ -23,8 +24,6 @@ private examinations:Examination[];
 //onSelect(examination){
 //  this._router.navigate(['/examinationList',examination.id, 'questions']);
   //}
-
-
     //,
   //  (error)=>{console.log(error)}
   //  )

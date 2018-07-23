@@ -28,7 +28,6 @@ import { AddExaminationComponent } from './components/add-examination/add-examin
     ListpatientComponent,
     AddPatientComponent,
     ListExaminationComponent,
-    ListQuestionsComponent
     ListQuestionsComponent,
     AddExaminationComponent
   ],
