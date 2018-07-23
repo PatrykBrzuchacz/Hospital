@@ -11,14 +11,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuestionService {
 
-  private baseUrlProxyShouldBe: string='http://localhost:8080/'; //todo proxy
+  //private baseUrlProxyShouldBe: string='http://localhost:8080/'; //todo proxy
 
-  private baseUrl = this.baseUrlProxyShouldBe + 'api/questions/';
+  private baseUrl = 'api/questions/';
     
   constructor(private http: HttpClient) {
   }
 
   getQuestions(id: Number): Observable<Question[]> {
-    return this.http.get<Question[]>(this.baseUrl + '/question/' + id);
+    return this.http.get<Question[]>(this.baseUrl  + id);
   }  
 }

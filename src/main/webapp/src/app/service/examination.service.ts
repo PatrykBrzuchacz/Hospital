@@ -5,23 +5,19 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from 'rxjs/Observable';
 import{Examination}  from '../examination';
+import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ExaminationService {
   
-  private baseUrl:string='http://localhost:8080/api';
-  private headers = new Headers({'Content-Type':'application/json'});
-  private options= new RequestOptions({headers:this.headers});
+  private baseUrl = '/api';
   private examination = new Examination();
-  constructor(private _http:Http) {
+  constructor(private http: HttpClient) {
   }
-  getExaminations(){
-   return this._http.get(this.baseUrl+'/examinations',this.options).map((response:Response)=>response.json())
-   .catch(this.errorHandler);
-}
-
+  getExaminations(): Observable<Examination[]>{
+   return this.http.get<Examination[]>(this.baseUrl+'/examinations');
+  }
 getExaminationWithQuestions(id: Number): Observable<Examination> {
-  return this._http.get(this.baseUrl + '/examinations/' + id, this.options)
-    .map((response:Response)=>response.json());
+  return this.http.get<Examination>(this.baseUrl + '/examinations/' + id);
 }
 
 errorHandler(error:Response){
@@ -30,13 +26,11 @@ errorHandler(error:Response){
 
 
   createExamination(examination:Examination){
-    return this._http.post(this.baseUrl+'/examinations',JSON.stringify(examination), this.options).map((response:Response)=>response.json())
-   // .catch(this.errorHandler);
+    return this.http.post(this.baseUrl+'/examinations',examination);
   }
 
   updateExamination(examination:Examination){
-    return this._http.put(this.baseUrl+'/examinations',JSON.stringify(examination),  this.options).map((response:Response)=>response.json())
-    .catch(this.errorHandler);
+    return this.http.put(this.baseUrl+'/examinations',examination);
   }
 
   setter(examination:Examination){

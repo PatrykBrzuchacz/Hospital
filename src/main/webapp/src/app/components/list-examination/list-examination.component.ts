@@ -20,12 +20,12 @@ private examinations:Examination[];
      this.examinations=examinations;})
   }
 onSelect(examination){
-  this._router.navigate(['/examinationList',examination.id]);
+  this._router.navigate(['/examinationList/upsert/',examination.id]);
   }
   createExamination(){
     let examination = new Examination();
     this._examinationService.setter(examination);
-    this._router.navigate(['/examinationList/add']);
+    this._router.navigate(['/examinationList/upsert']);
   }
 
 
