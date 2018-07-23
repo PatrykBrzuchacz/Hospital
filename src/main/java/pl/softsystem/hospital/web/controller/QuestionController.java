@@ -8,9 +8,13 @@ import pl.softsystem.hospital.domain.model.Question;
 import pl.softsystem.hospital.application.service.Implementation.ExaminationServiceImplemenetation;
 import pl.softsystem.hospital.application.service.Implementation.QuestionServiceImplementation;
 import pl.softsystem.hospital.domain.repository.ExaminationRepository;
+import pl.softsystem.hospital.domain.repository.QuestionRepository;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins="http://localhost:4200",allowedHeaders = "*")
 public class QuestionController {
 
     @Autowired
@@ -22,19 +26,21 @@ public class QuestionController {
     @Autowired
     private ExaminationRepository examinationRepository;
 
-    @PostMapping("/question/{type}")
+    @Autowired
+    private QuestionRepository questionRepository;
+
+  /*  @PostMapping("/question/{type}")
     public Question saveQuestion(@RequestBody Question question, @PathVariable ExaminationType type) {
         Examination examination = examinationServiceImplemenetation.getExaminationByType(type);
         question.setExamination(examination);
         return questionServiceImplementation.saveQuestion(question);
+    }*/
+
+    @GetMapping("/question/{id}")
+    public List<Question> DisplayQuestions(@PathVariable Long id) {
+          return questionRepository.findAllByExaminationId(id);
     }
 
-    @PostMapping("/question/{id}")
-    public Question saveQuestions(@RequestBody Question question, @PathVariable Long id) {
-        Examination examination = examinationRepository.getExaminationById(id);
-        question.setExamination(examination);
-        return questionServiceImplementation.saveQuestion(question);
-    }
     @PostMapping("/question")
     public Question saveQuestion(@RequestBody Question question) {
         return questionServiceImplementation.saveQuestion(question);

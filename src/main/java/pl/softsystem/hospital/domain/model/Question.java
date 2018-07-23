@@ -17,7 +17,7 @@ public class Question {
     private Long id;
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_examination")
     private Examination examination;
 

@@ -16,7 +16,7 @@ export class QuestionService {
   private question = new Question();
     constructor(private _http:Http) {
      }
-     getQuestion(id:Number){
+     getQuestions(id:Number){
       return this._http.get(this.baseUrl+'/question/'+id,this.options).map((response:Response)=>response.json())
       .catch(this.errorHandler);
   }
