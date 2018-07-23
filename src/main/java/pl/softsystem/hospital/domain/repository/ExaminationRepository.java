@@ -6,5 +6,5 @@ import pl.softsystem.hospital.domain.model.ExaminationType;
 
 public interface ExaminationRepository extends JpaRepository<Examination, Long> {
     Examination getExaminationByType(ExaminationType type);
-
+    Examination  getExaminationById(Long id);
 }

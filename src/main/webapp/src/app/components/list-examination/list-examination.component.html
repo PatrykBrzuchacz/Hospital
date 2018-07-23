@@ -16,14 +16,16 @@
     <th>Id</th>
     <th>Name</th>
     <th>Type</th>
-
+    <th>Operation</th>
 </thead>
 <tbody>
     <tr *ngFor="let examination of examinations">
         <td>{{examination.id}}</td>
         <td>{{examination.name}}</td>
         <td>{{examination.type}}</td>
-    </tr>
+       <td><button class="btn btn-primary"(click)="onSelect(examination)">Questions</button>
+    
+      </tr>
 </tbody>
 </table>
 </div>

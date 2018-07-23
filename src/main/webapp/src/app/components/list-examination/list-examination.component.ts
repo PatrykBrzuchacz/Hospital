@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ExaminationService} from '../../service/examination.service';
 import{Examination} from '../../examination';
 import{Router} from '@angular/router';
+import {QuestionService} from '../../service/question.service';
+import{Question} from '../../question';
 @Component({
   selector: 'app-list-examination',
   templateUrl: './list-examination.component.html',
@@ -19,5 +21,9 @@ private examinations:Examination[];
     (error)=>{console.log(error)}
     )
   }
+onSelect(examination){
+  this._router.navigate(['/examinationList',examination.id, 'questions']);
 
+  }
+}
 }

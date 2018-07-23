@@ -7,9 +7,10 @@ import pl.softsystem.hospital.domain.model.ExaminationType;
 import pl.softsystem.hospital.domain.model.Question;
 import pl.softsystem.hospital.application.service.Implementation.ExaminationServiceImplemenetation;
 import pl.softsystem.hospital.application.service.Implementation.QuestionServiceImplementation;
+import pl.softsystem.hospital.domain.repository.ExaminationRepository;
 
 @RestController
-@RequestMapping("/api/questions")
+@RequestMapping("/api")
 public class QuestionController {
 
     @Autowired
@@ -18,6 +19,9 @@ public class QuestionController {
     @Autowired
     private ExaminationServiceImplemenetation examinationServiceImplemenetation;
 
+    @Autowired
+    private ExaminationRepository examinationRepository;
+
     @PostMapping("/question/{type}")
     public Question saveQuestion(@RequestBody Question question, @PathVariable ExaminationType type) {
         Examination examination = examinationServiceImplemenetation.getExaminationByType(type);
@@ -25,7 +29,12 @@ public class QuestionController {
         return questionServiceImplementation.saveQuestion(question);
     }
 
-
+    @PostMapping("/question/{id}")
+    public Question saveQuestions(@RequestBody Question question, @PathVariable Long id) {
+        Examination examination = examinationRepository.getExaminationById(id);
+        question.setExamination(examination);
+        return questionServiceImplementation.saveQuestion(question);
+    }
     @PostMapping("/question")
     public Question saveQuestion(@RequestBody Question question) {
         return questionServiceImplementation.saveQuestion(question);
