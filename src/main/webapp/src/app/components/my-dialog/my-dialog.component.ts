@@ -2,22 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Question } from '../../question';
+import { QuestionService } from '../../service/question.service';
 @Component({
   templateUrl: './my-dialog.component.html',
 
 })
 export class MyDialogComponent {
 
+  private question:Question;
+
   constructor(
     private formBuilder: FormBuilder,
-    private MyDialog: MatDialogRef<MyDialogComponent>
+    private MyDialog: MatDialogRef<MyDialogComponent>,
+    private questionService:QuestionService
   ) {}
  
   questions = [];
-  addQuestion(newQuestion: string) {
-    if (newQuestion) {
-      this.questions.push(newQuestion);
-      console.log(newQuestion);
+  addQuestion(nameQuestion: string) {
+    if (nameQuestion) {
+     // this.questions.push(nameQuestion);
+      let question = new Question();
+      
+      question.name=nameQuestion;
+      console.log(question);
+      this.questionService.createQuestion(this.question,1).subscribe((question)=>{
+        console.log(question);
+       // this._router.navigate(['/']);
+      });
+      //  this.questionService.createQuestion(question, 1);
     }
     this.MyDialog.close();
     

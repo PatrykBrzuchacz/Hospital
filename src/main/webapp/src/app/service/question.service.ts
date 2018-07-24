@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuestionService {
 
+  public question = new Question();
+
   //private baseUrlProxyShouldBe: string='http://localhost:8080/'; //todo proxy
 
   private baseUrl = 'api/questions/';
@@ -21,6 +23,14 @@ export class QuestionService {
   getQuestions(id: Number): Observable<Question[]> {
     return this.http.get<Question[]>(this.baseUrl  + id);
   } 
+
+  createQuestion(question:Question, id: Number) {
+    return this.http.post(this.baseUrl+'/examination/'+{id}+'/add', question);
+  }
+  
+  setter(question:Question){
+    this.question=question;
+    }
   
   
 }
