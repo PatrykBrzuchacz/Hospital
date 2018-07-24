@@ -63,6 +63,15 @@ files:any;
 
   }
 
+  addQuestionToExamination(){
+    
+    console.log("dupa");
+
+
+  }
+
+  
+
   MyDialogRef: MatDialogRef<MyDialogComponent>;
 
   openDialog() {

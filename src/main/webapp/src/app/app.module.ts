@@ -14,7 +14,7 @@ import { ExaminationService } from './service/examination.service';
 import { QuestionService } from './service/question.service';
 import { AddExaminationComponent } from './components/add-examination/add-examination.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, MatDialogModule } from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, MatDialogModule, MatInputModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MyDialogComponent } from './components/my-dialog/my-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -47,7 +47,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
   ],
 
   

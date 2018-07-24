@@ -10,10 +10,14 @@
           <label for="pesel">Type</label>
           <input type="text" name="type" class="form-control" [(ngModel)]="examination.type">
       </div>
+      <input type="submit" value="save" class="btn btn-success">
+
 
       <app-list-questions [examination]="examination"></app-list-questions>
       
-      <button  (click)="openAddFileDialog()">Add questions</button>
-      <input type="submit" value="save" class="btn btn-success">
+      
   </form>
+  <form>
+  <button  (click)="openAddFileDialog()">Add questions</button>
+      </form>
 </div>

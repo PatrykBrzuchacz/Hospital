@@ -20,5 +20,7 @@ export class QuestionService {
 
   getQuestions(id: Number): Observable<Question[]> {
     return this.http.get<Question[]>(this.baseUrl  + id);
-  }  
+  } 
+  
+  
 }
