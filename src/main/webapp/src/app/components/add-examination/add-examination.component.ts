@@ -3,6 +3,7 @@ import {Examination} from '../../examination';
 import {ExaminationService} from '../../service/examination.service';
 import{Router} from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
+
 import { ActivatedRoute, Params, } from '@angular/router';
 import { MyDialogComponent } from '../../components//my-dialog/my-dialog.component';
 import { filter } from 'rxjs/operators';
@@ -31,6 +32,8 @@ files:any;
         .subscribe(name => this.files.push({ name, content: '' }));
   }
 
+
+
   ngOnInit() {
     this.activatedRouter.paramMap.subscribe(params=>{
       const id = params.get('id');
@@ -42,9 +45,7 @@ files:any;
     this.examination=this._examinationService.getter();
   })
 }
-
  
-
   processFormExamination(){
     if(this.examination.id){
       this._examinationService.createExamination(this.examination).subscribe((examination)=>{
@@ -62,17 +63,13 @@ files:any;
 
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(MyDialogComponent, {
-       });
   MyDialogRef: MatDialogRef<MyDialogComponent>;
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-          });
   openDialog() {
     this.MyDialogRef = this.dialog.open(MyDialogComponent,{
       hasBackdrop: false
+    });
   }
 
+  
 }

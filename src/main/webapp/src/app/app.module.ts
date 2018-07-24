@@ -18,9 +18,8 @@ import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MyDialogComponent } from './components/my-dialog/my-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MyDialogComponent } from './my-dialog/my-dialog.component';
-import { MatDialogModule } from '@angular/material';
+
+
  const appRoutes:Routes=[
    {path:'', component:ListpatientComponent},
    {path:'addPatient', component:AddPatientComponent},
@@ -50,11 +49,12 @@ import { MatDialogModule } from '@angular/material';
     ReactiveFormsModule,
     MatFormFieldModule
   ],
+
   
     entryComponents:[
      MyDialogComponent
     ],
-     
+
   providers: [PatientService,ExaminationService, QuestionService],
   bootstrap: [AppComponent],
 })
