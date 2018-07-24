@@ -1,4 +1,4 @@
 export class Question {
-    id:Number;
-    name:string;
+    id: Number;
+    name: string;
 }

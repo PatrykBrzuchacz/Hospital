@@ -13,10 +13,11 @@ export class MyDialogComponent {
     private MyDialog: MatDialogRef<MyDialogComponent>
   ) {}
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
     this.form = this.formBuilder.group({
       question: ''
-    })
+    });
   }
 
   submit(form) {
