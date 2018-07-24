@@ -40,6 +40,10 @@ public class ExaminationController {
     public Examination saveExamination(@RequestBody Examination examination){
         return examinationServiceImplemenetation.saveExamination(examination);
     }
+    @PutMapping
+    public Examination updateExamination(@RequestBody Examination examination){
+        return examinationServiceImplemenetation.saveExamination(examination);
+    }
 
 
 

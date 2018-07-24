@@ -13,6 +13,8 @@ import{Question} from '../../question';
 export class ListExaminationComponent implements OnInit {
 private examinations:Examination[];
 
+  @Input() examination:Examination
+
   constructor(private _examinationService:ExaminationService, private _router:Router) { }
   
   ngOnInit() {
@@ -20,7 +22,7 @@ private examinations:Examination[];
      this.examinations=examinations;})
   }
 onSelect(examination){
-  this._router.navigate(['/examinationList/upsert/',examination.id]);
+  this._router.navigate(['/examinationList/upsert',examination.id]);
   }
   createExamination(){
     let examination = new Examination();
