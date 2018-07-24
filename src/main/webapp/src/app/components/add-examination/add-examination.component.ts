@@ -65,10 +65,14 @@ files:any;
   openDialog(): void {
     const dialogRef = this.dialog.open(MyDialogComponent, {
        });
+  MyDialogRef: MatDialogRef<MyDialogComponent>;
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
           });
+  openDialog() {
+    this.MyDialogRef = this.dialog.open(MyDialogComponent,{
+      hasBackdrop: false
   }
 
 }
