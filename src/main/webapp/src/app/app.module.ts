@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import{HttpModule} from '@angular/http';
-import{FormsModule}   from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ListpatientComponent } from './components/listpatient/listpatient.component';
 import { AddPatientComponent } from './components/add-patient/add-patient.component';
@@ -15,10 +14,10 @@ import { ExaminationService } from './service/examination.service';
 import { QuestionService } from './service/question.service';
 import { AddExaminationComponent } from './components/add-examination/add-examination.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule, MatCheckboxModule, MatTableModule, MatDialogModule } from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, MatDialogModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MyDialogComponent } from './my-dialog/my-dialog.component';
-
+import { MyDialogComponent } from './components/my-dialog/my-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
  const appRoutes:Routes=[
    {path:'', component:ListpatientComponent},
    {path:'addPatient', component:AddPatientComponent},
@@ -35,6 +34,7 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     ListExaminationComponent,
     ListQuestionsComponent,
     AddExaminationComponent,
+    MyDialogComponent
       ],
   imports: [
     BrowserModule,
@@ -44,9 +44,12 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     RouterModule.forRoot(appRoutes),
     MatDialogModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
+  
     entryComponents:[
-      MyDialogComponent
+     MyDialogComponent
     ],
      
   providers: [PatientService,ExaminationService, QuestionService],

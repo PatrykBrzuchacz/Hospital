@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Examination} from '../../examination';
 import {ExaminationService} from '../../service/examination.service';
 import{Router} from '@angular/router';
-import {MatDialog} from '@angular/material';
-
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { ActivatedRoute, Params, } from '@angular/router';
-import { MyDialogComponent } from '../../my-dialog/my-dialog.component';
-
+import { MyDialogComponent } from '../../components//my-dialog/my-dialog.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-examination',
@@ -17,14 +16,24 @@ export class AddExaminationComponent implements OnInit {
 
   examination: Examination;
   private updateid: Number;
+  myDialog:MatDialogRef<MyDialogComponent>;
+files:any;
+  constructor(private _examinationService:ExaminationService,private activatedRouter: ActivatedRoute,
+     private router: Router,private dialog: MatDialog) { }
 
+     openAddFileDialog(){
+       this.myDialog=this.dialog.open(MyDialogComponent);
+     
 
-  constructor(private _examinationService:ExaminationService,private activatedRouter: ActivatedRoute, private router: Router,public dialog: MatDialog) { }
+     this.myDialog
+        .afterClosed()
+        .pipe(filter(name => name))
+        .subscribe(name => this.files.push({ name, content: '' }));
+  }
 
   ngOnInit() {
     this.activatedRouter.paramMap.subscribe(params=>{
       const id = params.get('id');
-
       if (id) {
         this.updateid = +id;
         this._examinationService.getExaminationWithQuestions(this.updateid).subscribe(result => this.examination = result)
@@ -47,7 +56,7 @@ export class AddExaminationComponent implements OnInit {
     else {
       this._examinationService.updateExamination(this.examination).subscribe((examination)=>{
         console.log(this.examination);
-        this.router.navigate(['/']);
+        this.router.navigate(['/examinationList']);
       });
     }
 
