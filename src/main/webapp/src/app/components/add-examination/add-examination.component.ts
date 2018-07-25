@@ -36,7 +36,7 @@ createForms(){
     type:'',
   });
   this.questionForm=this.fb.group({
-    questionName:['']
+    name:['']
   });
 }
 
@@ -59,27 +59,30 @@ onExaminationSubmit(){
     examination=examinationRes as Examination;
 
     for (let i=0; i<this.questionList.length;i++) {
+      
       this.questionList[i].examination=examination;
+      console.log(this.questionList[i]);
     }
-    this.questionService.addAll(this.questionList,examination.id).subscribe((questionRes:any)=>{
-      this.questionList=questionRes as Question[];
+
+    this.questionService.addAll(this.questionList, examination.id).subscribe((questionRes:any)=>{
+   this.questionList=questionRes as Question[];
       for (let i = 0; i < this.questionList.length; i++) {
-        console.log(this.questionList[i].id);
+        console.log(this.questionList[i]);
       }
 
       this.examinationForm.reset();
     this.questionList=[];
     }
-  )
+  );
 
-  })
+  });
 }
 onQuestionSubmit(value:any){
   console.log('Dodaj questiona');
-  let questionN=value.questionName.trim();
+  let questionN=value.name.trim();
   console.log(questionN);
   const q: Question = new Question(null, questionN);
-  console.log(q.questionName);
+  console.log(q.name);
   this.questionList.push(q);
   this.questionForm.reset();
 }

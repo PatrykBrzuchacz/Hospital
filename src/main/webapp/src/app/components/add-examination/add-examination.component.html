@@ -7,18 +7,17 @@
 <hr>
     <form [formGroup]="questionForm" id="questionForm" (ngSubmit)="onQuestionSubmit(questionForm.value)"  novalidate>
      
-      <input class="form-control" formControlName="questionName">
+      <input class="form-control" formControlName="name">
 
      
       <button type="submit" form="questionForm">add Question</button>
 
-      
   </form>
 </form>
 <div class="list-group col-md-7">
 <a *ngFor="let question of questionList; let i = index" class="question-name list-group-item
 list-group-item-action list-group-item-primary">
- {{i+1}}. {{question.questionName}}
+ {{i+1}}. {{question.name}}
 </a>
 
 

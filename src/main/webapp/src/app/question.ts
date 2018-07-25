@@ -2,10 +2,10 @@ import { Examination } from "./examination";
 
 export class Question {
     id: Number;
-    questionName: string;
+     name: string;
     examination:Examination;
-    constructor(examination:Examination, questionName: string){
+    constructor(examination:Examination, name: string){
         this.examination=examination; 
-        this.questionName = questionName;
+        this.name = name;
     }
 }
