@@ -1,4 +1,11 @@
+import { Examination } from "./examination";
+
 export class Question {
     id: Number;
-    name: string;
+    questionName: string;
+    examination:Examination;
+    constructor(examination:Examination,questionName:string){
+        this.examination=examination;
+        this.questionName=questionName;
+    }
 }

@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 export class ExaminationService {
 
   private baseUrl = '/api';
-  private examination = new Examination();
   constructor(private http: HttpClient) {
   }
   getExaminations(): Observable<Examination[]> {
@@ -24,20 +23,13 @@ errorHandler(error: Response) {
   return Observable.throw(error || 'SERVER ERROR');
   }
 
-
-  createExamination(examination: Examination) {
-    return this.http.post(this.baseUrl + '/examinations', examination);
+  createExamination(examination: Examination):Observable<Examination> {
+    return this.http.post<Examination>(this.baseUrl + '/examinations', examination);
   }
 
   updateExamination(examination: Examination) {
     return this.http.put(this.baseUrl + '/examinations', examination);
   }
 
-  setter(examination: Examination) {
-    this.examination = examination;
-    }
 
-    getter() {
-    return this.examination;
-    }
 }

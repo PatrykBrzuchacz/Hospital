@@ -13,7 +13,7 @@ import pl.softsystem.hospital.domain.repository.QuestionRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/question/")
 @CrossOrigin(origins="http://localhost:4200",allowedHeaders = "*")
 public class QuestionController {
 
@@ -36,12 +36,12 @@ public class QuestionController {
         return questionServiceImplementation.saveQuestion(question);
     }*/
 
-    @GetMapping("/question/{id}")
+    @GetMapping("/{id}")
     public List<Question> DisplayQuestions(@PathVariable Long id) {
           return questionRepository.findAllByExaminationId(id);
     }
 
-    @PostMapping("/question")
+    @PostMapping
     public Question saveQuestion(@RequestBody Question question) {
         return questionServiceImplementation.saveQuestion(question);
     }

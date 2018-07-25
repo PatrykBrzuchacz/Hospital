@@ -24,8 +24,6 @@ onSelect(examination) {
   this._router.navigate(['/examinationList/upsert', examination.id]);
   }
   createExamination() {
-    const examination = new Examination();
-    this._examinationService.setter(examination);
     this._router.navigate(['/examinationList/upsert']);
   }
 

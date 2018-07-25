@@ -3,10 +3,11 @@ import {Examination} from '../../examination';
 import {ExaminationService} from '../../service/examination.service';
 import {Router} from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
-
+import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, } from '@angular/router';
-import { MyDialogComponent } from '../../components//my-dialog/my-dialog.component';
+import  {Question } from '../../question';
 import { filter } from 'rxjs/operators';
+import { QuestionService } from '../../service/question.service';
 
 @Component({
   selector: 'app-add-examination',
@@ -15,54 +16,111 @@ import { filter } from 'rxjs/operators';
 })
 export class AddExaminationComponent implements OnInit {
 
-  examination: Examination;
-  private updateid: Number;
-  myDialog: MatDialogRef<MyDialogComponent>;
-files: any;
-  constructor(private _examinationService: ExaminationService, private activatedRouter: ActivatedRoute,
-     private router: Router, private dialog: MatDialog) { }
+  constructor(private examinationService: ExaminationService,
+     private activatedRouter: ActivatedRoute,
+    private questionService: QuestionService,
+     private router: Router, private fb: FormBuilder) { }
+updateid:number;
+     examination: Examination;
+     question: Question;
+     examinationForm:FormGroup;
+     questionForm:FormGroup;
+questionList:Question[]=[];
 
-     openAddFileDialog() {
-       this.myDialog = this.dialog.open(MyDialogComponent);
-     this.myDialog
-        .afterClosed()
-        .pipe(filter(name => name))
-        .subscribe(name => this.files.push({ name, content: '' }));
-  }
-
-
-
-  ngOnInit() {
-    this.activatedRouter.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id) {
-        this.updateid = +id;
-        this._examinationService.getExaminationWithQuestions(this.updateid).subscribe(result => this.examination = result);
-      }
-
-    this.examination = this._examinationService.getter();
+ngOnInit(){
+  this.createForms();
+  this.initList();
+}
+createForms(){
+  this.examinationForm=this.fb.group({
+    name:'',
+    type:'',
   });
+  this.questionForm=this.fb.group({
+    questionName:''
+  })
 }
-  processFormExamination() {
-    if (this.examination.id) {
-      this._examinationService.createExamination(this.examination).subscribe((examination) => {
-        console.log(examination);
-        this.router.navigate(['/examinationList']);
-      }, (error) => {console.log(error);
-      });
-    } else {
-      this._examinationService.updateExamination(this.examination).subscribe((examination) => {
-        console.log(this.examination);
-        this.router.navigate(['/examinationList']);
-      });
-    }
 
-  }
-  // tslint:disable-next-line:member-ordering
-  MyDialogRef: MatDialogRef<MyDialogComponent>;
-  openDialog() {
-    this.MyDialogRef = this.dialog.open(MyDialogComponent, {
-      hasBackdrop: false
-    });
-  }
+initList(){
+        this.activatedRouter.paramMap.subscribe(params => {
+        const id = params.get('id');
+        if (id) {
+          this.updateid = +id;
+        this.examinationService.getExaminationWithQuestions(this.updateid).
+        subscribe(result => this.examination = result);
+        
+}});
 }
+onQuestionSumbit(value:any){
+  let questionName=value.questionName;
+  value.questionName.trim();
+  const Q: Question = new Question(null, questionName);
+  this.questionList.push(Q);
+  this.questionForm.reset();
+}
+onExaminationSubmit(){
+  const exName=this.examinationForm.value.name.trim();
+  const exType=this.examinationForm.value.type.trim();
+const questionsOnExamination = this.questionList.length;
+  let examination: Examination=new Examination(exName, exType);
+  this.examinationService.createExamination(examination).subscribe((examinationRes:any)=>{
+    examination=examinationRes as Examination;
+
+    for (let i=0; i<this.questionList.length;i++) {
+      this.questionList[i].examination=examination;
+    }
+    this.questionService.addAll(this.questionList,examination.id).subscribe((questionRes:any)=>{
+      this.questionList=questionRes as Question[];
+      this.examinationForm.reset();
+    this.questionList=[];
+    }
+  )
+
+  })
+}
+  }
+
+
+
+
+
+
+   //ngOnInit() {
+    //   this.activatedRouter.paramMap.subscribe(params => {
+    //     const id = params.get('id');
+    //     if (id) {
+    //       this.updateid = +id;
+    //       this._examinationService.getExaminationWithQuestions(this.updateid).subscribe(result => this.examination = result);
+    //     }
+    
+    // });
+    // this.createExaminationForm();
+  
+
+
+// get empFormArray(): FormArray{
+//   return this.examinationForm.get('questions') as FormArray;
+// }
+// addQuestion(){
+//   let fg = this.fb.group(new Question());
+//   this.empFormArray.push(fg);	  
+// }
+
+  
+//   processFormExamination() {
+//     if (this.examination.id) {
+//       this._examinationService.createExamination(this.examination).subscribe((examination) => {
+//         console.log(examination);
+//         this.router.navigate(['/examinationList']);
+//       }, (error) => {console.log(error);
+//       });
+//     } else {
+//       this._examinationService.updateExamination(this.examination).subscribe((examination) => {
+//         console.log(this.examination);
+//         this.router.navigate(['/examinationList']);
+//       });
+//     }
+
+//   }
+
+// }

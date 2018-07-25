@@ -17,7 +17,6 @@ import { AddExaminationComponent } from './components/add-examination/add-examin
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule, MatDialogModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MyDialogComponent } from './components/my-dialog/my-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -36,8 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddPatientComponent,
     ListExaminationComponent,
     ListQuestionsComponent,
-    AddExaminationComponent,
-    MyDialogComponent
+    AddExaminationComponent
+
       ],
   imports: [
     BrowserModule,
@@ -50,9 +49,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatFormFieldModule
   ],
-    entryComponents: [
-     MyDialogComponent
-    ],
 
   providers: [PatientService, ExaminationService, QuestionService],
   bootstrap: [AppComponent],

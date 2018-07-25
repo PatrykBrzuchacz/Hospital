@@ -1,17 +1,21 @@
 <div class="container">
 
-  <form (ngSubmit)="processFormExamination()" >
+  <form [formGroup]="examinationForm" id="examinationForm" (ngSubmit)="onExaminationSubmit()" novalidate>
 
-      <div class="form group">
-          <label for="name">Name</label>
-          <input type="text" name="name" class="form-control" [(ngModel)]="examination.name">
-      </div>
-      <div class="form group">
-          <label for="pesel">Type</label>
-          <input type="text" name="type" class="form-control" [(ngModel)]="examination.type">
-      </div>
+    <input class="form-control" formControlName="name">
+    <input class="form-control" formControlName="type">
+
+    <form [formGroup]="questionForm" id="questionForm" (ngSubmit)="onQuestionSumbit(questionForm.value)"  novalidate>
+      <input class="form-control" formControlName="questionName">
+
       <app-list-questions [examination]="examination"></app-list-questions>
-      <button  (click)="openAddFileDialog()">Add questions</button>
-      <input type="submit" value="save" class="btn btn-success">
+      <button type="submit" form="questionForm">add Question</button>
+       
+
+
+      
   </form>
+</form>
+
+<button type="submit" form="examinationForm">add Examination </button>
 </div>
