@@ -2,8 +2,13 @@
 
   <form [formGroup]="examinationForm" id="examinationForm" (ngSubmit)="onExaminationSubmit()" novalidate>
 
-    <input class="form-control" formControlName="name">
-    <input class="form-control" formControlName="type">
+   Nazwa badania <input class="form-control" formControlName="name">
+   <!-- <input class="form-control" formControlName="type"> -->
+   Typ badania<select class="custom-select" id="inputGroupSelect01" formControlName="type">
+    <option value="0">MORFOLOGIA</option>
+    <option value="1">REZONANS</option>
+    <option value="2">TOMOGRAFIA</option>
+  </select>
 <hr>
     <form [formGroup]="questionForm" id="questionForm" (ngSubmit)="onQuestionSubmit(questionForm.value)"  novalidate>
      
@@ -12,6 +17,7 @@
      
       <button type="submit" form="questionForm">add Question</button>
 
+      
   </form>
 </form>
 <div class="list-group col-md-7">
