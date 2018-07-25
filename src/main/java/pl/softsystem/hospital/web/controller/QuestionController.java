@@ -47,9 +47,12 @@ public class QuestionController {
     }
 
     @PostMapping("examination/{id}/add")
-    public Question add(@RequestBody Question question, @PathVariable("id") Long examinationId) {
-        question.setExamination(examinationServiceImplemenetation.findById(examinationId));
-        return questionServiceImplementation.saveQuestion(question);
+    public List<Question> add(@RequestBody List<Question> questions, @PathVariable("id") Long examinationId) {
+       Examination examination=examinationServiceImplemenetation.findById(examinationId);
+        for(Question question: questions){
+            question.setExamination(examination);
+        }
+       return questionServiceImplementation.saveAll(questions);
     }
 
 }

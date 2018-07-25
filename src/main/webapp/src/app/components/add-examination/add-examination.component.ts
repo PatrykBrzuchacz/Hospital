@@ -20,16 +20,15 @@ export class AddExaminationComponent implements OnInit {
      private activatedRouter: ActivatedRoute,
     private questionService: QuestionService,
      private router: Router, private fb: FormBuilder) { }
-updateid:number;
      examination: Examination;
-     question: Question;
+
      examinationForm:FormGroup;
      questionForm:FormGroup;
 questionList:Question[]=[];
 
 ngOnInit(){
   this.createForms();
-  this.initList();
+  //this.initList();
 }
 createForms(){
   this.examinationForm=this.fb.group({
@@ -37,31 +36,24 @@ createForms(){
     type:'',
   });
   this.questionForm=this.fb.group({
-    questionName:''
-  })
+    questionName:['']
+  });
 }
 
-initList(){
-        this.activatedRouter.paramMap.subscribe(params => {
-        const id = params.get('id');
-        if (id) {
-          this.updateid = +id;
-        this.examinationService.getExaminationWithQuestions(this.updateid).
-        subscribe(result => this.examination = result);
+// initList(){
+//         this.activatedRouter.paramMap.subscribe(params => {
+//         const id = params.get('id');
+//         if (id) {
+//           this.updateid = +id;
+//         this.examinationService.getExaminationWithQuestions(this.updateid).
+//         subscribe(result => this.examination = result);
         
-}});
-}
-onQuestionSumbit(value:any){
-  let questionName=value.questionName;
-  value.questionName.trim();
-  const Q: Question = new Question(null, questionName);
-  this.questionList.push(Q);
-  this.questionForm.reset();
-}
+// }});
+// }
+
 onExaminationSubmit(){
   const exName=this.examinationForm.value.name.trim();
   const exType=this.examinationForm.value.type.trim();
-const questionsOnExamination = this.questionList.length;
   let examination: Examination=new Examination(exName, exType);
   this.examinationService.createExamination(examination).subscribe((examinationRes:any)=>{
     examination=examinationRes as Examination;
@@ -71,12 +63,25 @@ const questionsOnExamination = this.questionList.length;
     }
     this.questionService.addAll(this.questionList,examination.id).subscribe((questionRes:any)=>{
       this.questionList=questionRes as Question[];
+      for (let i = 0; i < this.questionList.length; i++) {
+        console.log(this.questionList[i].id);
+      }
+
       this.examinationForm.reset();
     this.questionList=[];
     }
   )
 
   })
+}
+onQuestionSubmit(value:any){
+  console.log('Dodaj questiona');
+  let questionN=value.questionName.trim();
+  console.log(questionN);
+  const q: Question = new Question(null, questionN);
+  console.log(q.questionName);
+  this.questionList.push(q);
+  this.questionForm.reset();
 }
   }
 
