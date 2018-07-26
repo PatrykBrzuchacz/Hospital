@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExaminationPatientComponent } from './components/examination-patient/examination-patient.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ExaminationWithQuestionsComponent } from './components/examination-with-questions/examination-with-questions.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
  const appRoutes: Routes = [
@@ -55,7 +56,8 @@ import { ExaminationWithQuestionsComponent } from './components/examination-with
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
 
   providers: [PatientService, ExaminationService, QuestionService],

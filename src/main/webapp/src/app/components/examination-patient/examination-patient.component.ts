@@ -5,6 +5,7 @@ import { Patient } from './../../patient';
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { log } from 'util';
 @Component({
   selector: 'app-examination-patient',
   templateUrl: './examination-patient.component.html',
@@ -12,22 +13,26 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ExaminationPatientComponent implements OnInit {
 
-  constructor(private examinationService: ExaminationService, private patientService: PatientService ) { }
-allExaminations: Examination[] = [];
-allPatients: Patient[] = [];
+  constructor(private examinationService: ExaminationService, private patientService: PatientService) { }
+ 
+  examinations: Examination[];
+  public patients: Patient[];
 
   ngOnInit() {
-    this.initList();
-  }
-
-  initList() {
-    this.examinationService.getExaminations().subscribe((res: any) => {
-      this.allExaminations = res as Examination[];
+    this.examinationService.getExaminations().subscribe((examinations) => {
+      console.log(examinations);
+      this.examinations = examinations;
     });
 
-    this.patientService.getPatients().subscribe((res: any) => {
-      this.allPatients = res as Patient[];
-    });
+      this.patientService.getPatients().subscribe((patients) => {
+        console.log(patients);
+        this.patients = patients;
+      });
+        
+      
+
+     
 
   }
+
 }
