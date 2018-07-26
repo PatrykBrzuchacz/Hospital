@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ExaminationService} from '../../service/examination.service';
-import {Examination} from '../../examination';
-import {Router} from '@angular/router';
-import {QuestionService} from '../../service/question.service';
+import { ExaminationService } from '../../service/examination.service';
+import { Examination } from '../../examination';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,32 +10,28 @@ import {QuestionService} from '../../service/question.service';
   styleUrls: ['./list-examination.component.scss']
 })
 export class ListExaminationComponent implements OnInit {
-private examinations: Examination[];
+  examinations: Examination[];
 
   @Input() examination: Examination;
 
   constructor(private examinationService: ExaminationService, private _router: Router) { }
   ngOnInit() {
-   this.examinationService.getExaminations().subscribe((examinations) => {console.log(examinations);
-     this.examinations = examinations; });
+    this.examinationService.getExaminations().subscribe((examinations) => {
+      console.log(examinations);
+      this.examinations = examinations;
+    });
   }
-onSelect(examination) {
-  this._router.navigate(['/examinationList/upsert', examination.id]);
+  onSelect(examination) {
+    this._router.navigate(['/examinationList/upsert', examination.id]);
   }
   createExamination() {
     this._router.navigate(['/examinationList/upsert']);
   }
 
-  deleteExamination(index: number) {
-    this.examinationService.delete(this.examinations[index].id);
-
-    delete this.examinations[index];
-
-    for (let i = index; i < this.examinations.length; i++) {
-      this.examinations[i] = this.examinations[i + 1];
-    }
-
-    this.examinations.pop();
+  deleteExamination(examination: Examination) {
+    this.examinationService.delete(examination.id).subscribe(() =>
+      this.examinations.splice(this.examinations.indexOf(examination, 0), 1)
+    );
   }
 }
 

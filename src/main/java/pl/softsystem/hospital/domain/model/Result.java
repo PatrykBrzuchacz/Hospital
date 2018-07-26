@@ -1,6 +1,5 @@
 package pl.softsystem.hospital.domain.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +14,7 @@ public class Result {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(name = "result_value")
     private String value;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_question")
@@ -28,5 +28,4 @@ public class Result {
         this.question = question;
         this.patient = patient;
     }
-
 }

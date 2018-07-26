@@ -45,6 +45,10 @@ public class ExaminationController {
         return examinationServiceImplemenetation.saveExamination(examination);
     }
 
+    @DeleteMapping("{id}")
+    public void deleteExamination(@PathVariable("id") Long id){
+        examinationRepository.deleteById(id);
+    }
 
 
 
