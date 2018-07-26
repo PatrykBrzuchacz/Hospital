@@ -14,13 +14,8 @@ export class MyDialogComponent {
   ) {}
  
   questions = [];
-  addQuestion(newQuestion: string) {
-    if (newQuestion) {
-      this.questions.push(newQuestion);
-      console.log(newQuestion);
-    }
-    this.MyDialog.close();
-    
+  addQuestion(newQuestionName: string) {
+    this.MyDialog.close(newQuestionName);
   }
 
   

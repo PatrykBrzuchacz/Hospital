@@ -1,7 +1,9 @@
+<div mat-dialog-content>
+
 <input #newQuestion
-      (keyup.enter)="addQuestion(newQuestion.value)"
-      (blur)="addQuestion(newQuestion.value); newQuestion.value='' ">
+      (keyup.enter)="addQuestion(newQuestion.value)">
 
     <button (click)="addQuestion(newQuestion.value)">Add</button>
 
+  </div>
     
