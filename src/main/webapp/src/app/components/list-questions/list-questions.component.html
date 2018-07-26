@@ -1,15 +1,17 @@
 <div class="container">
 
     <!-- <router-outlet></router-outlet> -->
- 
+<a> Examination name:  {{examination?.name}}    </a> <br /> 
+<a> Examination type:  {{examination?.type}}   </a>    
       <table class="table table-striped">
         <thead>
-            <th>Name</th>
-           
+            <th>Question Name</th>
+   
         </thead>
         <tbody>
             <tr *ngFor="let question of examination?.questions">
-                <td>{{question.name}}</td>
+                    <td>{{question.name}}</td>
+                
               </tr>
         </tbody>
         </table>

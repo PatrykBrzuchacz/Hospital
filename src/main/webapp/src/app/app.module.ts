@@ -20,6 +20,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExaminationPatientComponent } from './components/examination-patient/examination-patient.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ExaminationWithQuestionsComponent } from './components/examination-with-questions/examination-with-questions.component';
 
 
  const appRoutes: Routes = [
@@ -29,6 +30,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
    {path: 'examinationList/upsert/:id', component: AddExaminationComponent},
    {path: 'examinationList/upsert', component: AddExaminationComponent},
    {path: 'examinationPatient', component:  ExaminationPatientComponent },
+   {path: 'examinationList/:id/questions', component: ListQuestionsComponent }
  ];
 
 @NgModule({
@@ -40,7 +42,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ListQuestionsComponent,
     AddExaminationComponent,
     ExaminationPatientComponent,
-    NavbarComponent
+    NavbarComponent,
+    ExaminationWithQuestionsComponent
 
       ],
   imports: [

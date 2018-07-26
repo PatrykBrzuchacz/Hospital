@@ -11,12 +11,12 @@ import { ActivatedRoute, Params, } from '@angular/router';
   styleUrls: ['./list-questions.component.scss']
 })
 export class ListQuestionsComponent implements OnInit {
-  @Input() examination: Examination;
 updateid: Number;
+examination: Examination;
   constructor(private router: ActivatedRoute, private examinationService: ExaminationService) { }
   ngOnInit() {
       this.router.paramMap.subscribe(params => {
-        this.updateid = parseInt(params.get('id'), 2);
+        this.updateid = parseInt(params.get('id'));
         this.examinationService.getExaminationWithQuestions(this.updateid).subscribe(result => this.examination = result);
    });
 }

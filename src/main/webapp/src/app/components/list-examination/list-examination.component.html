@@ -14,7 +14,10 @@
         <td>{{examination.name}}</td>
         <td>{{examination.type}}</td>
        <!-- <td><a [routerLink]="['/examinationList',examination.id,'questions']">Edit</a> </td> -->
-       <td> <button class="btn btn-outline-info btn-sm" (click)="deleteExamination(examination)">DELETE </button> </td>
+       <td>  <button class="btn btn-outline-info btn-sm" (click)="deleteExamination(examination)">DELETE </button>
+        <button class="btn btn-outline-info btn-sm" [routerLink]="['/examinationList/', examination.id, 'questions']" >
+             Show Questions </button>
+    </td>
       </tr>
 </tbody>
 </table>
