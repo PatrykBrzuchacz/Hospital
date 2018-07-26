@@ -15,9 +15,9 @@ private examinations: Examination[];
 
   @Input() examination: Examination;
 
-  constructor(private _examinationService: ExaminationService, private _router: Router) { }
+  constructor(private examinationService: ExaminationService, private _router: Router) { }
   ngOnInit() {
-   this._examinationService.getExaminations().subscribe((examinations) => {console.log(examinations);
+   this.examinationService.getExaminations().subscribe((examinations) => {console.log(examinations);
      this.examinations = examinations; });
   }
 onSelect(examination) {
@@ -27,8 +27,19 @@ onSelect(examination) {
     this._router.navigate(['/examinationList/upsert']);
   }
 
+  deleteExamination(index: number) {
+    this.examinationService.delete(this.examinations[index].id);
 
+    delete this.examinations[index];
 
+    for (let i = index; i < this.examinations.length; i++) {
+      this.examinations[i] = this.examinations[i + 1];
+    }
 
+    this.examinations.pop();
+  }
 }
+
+
+
 

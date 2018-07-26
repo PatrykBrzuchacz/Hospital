@@ -1,0 +1,4 @@
+<div class="dropdown-menu">
+  <a class="dropdown-item select-drop" (click)="initList()"></a>
+  <a class="dropdown-item select-drop" *ngFor="let patient of allPatients">{{patient.name}}</a>
+</div>

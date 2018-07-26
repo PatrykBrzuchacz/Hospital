@@ -5,8 +5,11 @@
     <a class="nav-link" routerLink="">List of patients</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" routerLink="examinationList">Examinations</a>
+    <a class="nav-link active" routerLink="/examinationList">Examinations</a>
     <router-outlet></router-outlet>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/examinationPatient">Examination-Patients</a>
   </li>
   </ul>
  <table class="table table-striped">
@@ -17,12 +20,12 @@
     <th>Operation</th>
 </thead>
 <tbody>
-    <tr *ngFor="let examination of examinations">
+    <tr *ngFor="let examination of examinations; let i=index">
         <td>{{examination.id}}</td>
         <td>{{examination.name}}</td>
         <td>{{examination.type}}</td>
        <!-- <td><a [routerLink]="['/examinationList',examination.id,'questions']">Edit</a> </td> -->
-       <td><a [routerLink]="['/examinationList/upsert', examination.id]">Edit</a> </td>
+       <td> <button class="btn btn-outline-info btn-sm" (click)="deleteExamination(i)">DELETE </button> </td>
       </tr>
 </tbody>
 </table>

@@ -23,13 +23,15 @@ errorHandler(error: Response) {
   return Observable.throw(error || 'SERVER ERROR');
   }
 
-  createExamination(examination: Examination):Observable<Examination> {
+  createExamination(examination: Examination): Observable<Examination> {
     return this.http.post<Examination>(this.baseUrl + '/examinations', examination);
   }
 
   updateExamination(examination: Examination) {
     return this.http.put(this.baseUrl + '/examinations', examination);
   }
-
+  delete(id: Number) {
+    return this.http.delete(this.baseUrl + '/examinations/' + id);
+    }
 
 }

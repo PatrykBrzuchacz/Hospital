@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule, MatDialogModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExaminationPatientComponent } from './components/examination-patient/examination-patient.component';
 
 
  const appRoutes: Routes = [
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
    {path: 'examinationList', component: ListExaminationComponent},
    {path: 'examinationList/upsert/:id', component: AddExaminationComponent},
    {path: 'examinationList/upsert', component: AddExaminationComponent},
+   {path: 'examinationPatient', component:  ExaminationPatientComponent },
  ];
 
 @NgModule({
@@ -35,7 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddPatientComponent,
     ListExaminationComponent,
     ListQuestionsComponent,
-    AddExaminationComponent
+    AddExaminationComponent,
+    ExaminationPatientComponent
 
       ],
   imports: [
