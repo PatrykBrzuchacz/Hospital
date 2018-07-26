@@ -24,11 +24,6 @@ public class Examination {
     @Enumerated(value = EnumType.STRING)
     private ExaminationType type;
 
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "examinations")
-    private Set<Patient> patients = new HashSet<>();
-
     @OneToMany(mappedBy = "examination", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();
 }

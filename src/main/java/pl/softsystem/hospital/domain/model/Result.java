@@ -14,18 +14,28 @@ public class Result {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(name = "result_value")
     private String value;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_question")
-    private Question question;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id_question")
+//    private Question question;
+
+    @Column(name = "question_name", nullable = false)
+    private String questionName;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_patient")
     private Patient patient;
 
-    public Result(String value, Question question, Patient patient) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_patient_examination")
+    private PatientExamination patientExamination;
+
+    public Result(String value, String questionName, Patient patient) {
         this.value = value;
-        this.question = question;
+        this.questionName = questionName;
         this.patient = patient;
     }
 }

@@ -20,15 +20,13 @@ public class Patient {
     private String name;
 
     private Integer pesel;
-    @ManyToMany
-    @JoinTable(name = "Patient_Examination",
-            joinColumns = @JoinColumn(name = "id_patient", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_examination", referencedColumnName = "id"))
-    private Set<Examination> examinations = new HashSet<>();
 
-    public void addExamination(Examination examination) {
-        if (examination != null) {
-            examinations.add(examination);
-        }
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private Set<PatientExamination> patientExaminations = new HashSet<>();
+
+    public PatientExamination createPatientExamination() {
+        PatientExamination patientExamination = new PatientExamination();
+        patientExaminations.add(patientExamination);
+        return patientExamination;
     }
 }

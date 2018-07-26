@@ -21,15 +21,4 @@ public class Question {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_examination")
     private Examination examination;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Result> results = new HashSet<>();
-
-    public void addResult(Result result) {
-        if (result != null) {
-            results.add(result);
-        }
-    }
 }
-
