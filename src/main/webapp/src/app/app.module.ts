@@ -19,6 +19,7 @@ import {MatFormFieldModule, MatDialogModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExaminationPatientComponent } from './components/examination-patient/examination-patient.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
  const appRoutes: Routes = [
@@ -38,7 +39,8 @@ import { ExaminationPatientComponent } from './components/examination-patient/ex
     ListExaminationComponent,
     ListQuestionsComponent,
     AddExaminationComponent,
-    ExaminationPatientComponent
+    ExaminationPatientComponent,
+    NavbarComponent
 
       ],
   imports: [
