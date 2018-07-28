@@ -3,13 +3,13 @@ import { Question } from './question';
 export class Result {
     id: Number;
     value: string;
-    question: Question;
-    examination: Examination;
+    questionName: string;
+    patient: Patient;
 
-    constructor(id: Number, value: string, question: Question, examination: Examination) {
+    constructor(id: Number, value: string, questionName: string, patient: Patient) {
         this.id = id;
         this.value = value;
-        this.question = question;
-        this.examination = examination;
+        this.questionName = questionName;
+        this.patient = patient;
     }
 }

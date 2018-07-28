@@ -1,11 +1,14 @@
-import { PatientService } from './../../service/patient.service';
-import { ExaminationService } from './../../service/examination.service';
+import { Component, OnInit } from '@angular/core';
 import { Examination } from './../../examination';
 import { Patient } from './../../patient';
-import { Component, OnInit } from '@angular/core';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { ExaminationService } from './../../service/examination.service';
+import { PatientService } from './../../service/patient.service';
 import { log } from 'util';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ExaminationProcessDialogComponent } from '../../components//examination-process-dialog/examination-process-dialog.component';
+
+
+
 @Component({
   selector: 'app-examination-patient',
   templateUrl: './examination-patient.component.html',
@@ -13,8 +16,10 @@ import { log } from 'util';
 })
 export class ExaminationPatientComponent implements OnInit {
 
-  constructor(private examinationService: ExaminationService, private patientService: PatientService) { }
- 
+  constructor(private examinationService: ExaminationService,
+    private patientService: PatientService,
+    private dialog: MatDialog) { }
+
   examinations: Examination[];
   public patients: Patient[];
 
@@ -24,15 +29,24 @@ export class ExaminationPatientComponent implements OnInit {
       this.examinations = examinations;
     });
 
-      this.patientService.getPatients().subscribe((patients) => {
-        console.log(patients);
-        this.patients = patients;
-      });
-        
-      
+    this.patientService.getPatients().subscribe((patients) => {
+      console.log(patients);
+      this.patients = patients;
+    });
 
-     
 
+
+  }
+
+  openExamPatientDialog(selectedExamination, selectedPatient) {
+    const dialogRef = this.dialog.open(ExaminationProcessDialogComponent, {
+      height: '400px',
+      width: '400px',
+      data: { patient: selectedPatient, examination: selectedExamination }
+
+    });
+    console.log(selectedPatient);
+    console.log(selectedExamination);
   }
 
 }

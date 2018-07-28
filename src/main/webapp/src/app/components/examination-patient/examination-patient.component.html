@@ -1,24 +1,23 @@
 <form>
-    <mat-form-field>
-      <mat-select placeholder="Choose Patient" [(ngModel)]="selectedPatient" name="patient">
-        <mat-option *ngFor="let patient of patients" [value]="patient.name">
-          {{patient.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <p> Selected Patient: {{selectedPatient}} </p>
-  </form>
+  <mat-form-field>
+    <mat-select placeholder="Choose Patient" [(ngModel)]="selectedPatient" name="patient">
+      <mat-option *ngFor="let patient of patients" [value]="patient">
+        {{patient.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <form>
-      <mat-form-field>
-        <mat-select placeholder="Choose Examination" [(ngModel)]="selectedExamination" name="examination">
-          <mat-option *ngFor="let examination of examinations" [value]="examination.name">
-            {{examination.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    
-      <p> Selected Examination: {{selectedExamination}} </p>
-    </form>
-  
+  <p> Selected Patient: {{selectedPatient}} </p>
+
+  <mat-form-field>
+    <mat-select placeholder="Choose Examination" [(ngModel)]="selectedExamination" name="examination">
+      <mat-option *ngFor="let examination of examinations" [value]="examination">
+        {{examination.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p> Selected Examination: {{selectedExamination}} </p>
+
+  <button mat-fab color="primary" (click)="openExamPatientDialog(selectedExamination, selectedPatient)">Start!</button>
+</form>
