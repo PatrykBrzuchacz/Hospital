@@ -4,7 +4,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from 'rxjs/Observable';
 // tslint:disable-next-line:import-spacing
-import{Question}  from '../question';
+import{Question}  from '../domain/question';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

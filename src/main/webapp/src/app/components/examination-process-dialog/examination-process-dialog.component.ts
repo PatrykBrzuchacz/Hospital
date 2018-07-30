@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { QuestionService } from '../../service/question.service';
-import { Question, QuestionWithResult, ExaminationProcessRequest } from './../../question';
+import { Question, QuestionWithResult, ExaminationProcessRequest } from '../../domain/question';
 import { ExaminationProcessService } from '../../service/examination-process.service';
 
 

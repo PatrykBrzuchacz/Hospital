@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Examination } from './../../examination';
-import { Patient } from './../../patient';
+import { Examination } from './../../domain/examination';
+import { Patient } from './../../domain/patient';
 import { ExaminationService } from './../../service/examination.service';
 import { PatientService } from './../../service/patient.service';
 import { log } from 'util';
@@ -40,7 +40,8 @@ export class ExaminationPatientComponent implements OnInit {
 
   openExamPatientDialog(selectedExamination, selectedPatient) {
     const dialogRef = this.dialog.open(ExaminationProcessDialogComponent, {
-
+      height: '400px',
+      width: '400px',
       data: { patient: selectedPatient, examination: selectedExamination }
 
     });

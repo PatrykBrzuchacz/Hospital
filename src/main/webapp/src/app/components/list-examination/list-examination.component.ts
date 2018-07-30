@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ExaminationService } from '../../service/examination.service';
-import { Examination } from '../../examination';
+import { Examination } from '../../domain/examination';
 import { Router } from '@angular/router';
 
 

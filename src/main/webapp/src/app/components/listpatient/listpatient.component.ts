@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PatientService} from '../../service/patient.service';
-import {Patient} from '../../patient';
+import {Patient} from '../../domain/patient';
 import {Router} from '@angular/router';
-import { MatTableDataSource } from '../../../../node_modules/@angular/material';
 
 @Component({
   selector: 'app-listpatient',

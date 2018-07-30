@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Examination} from '../../examination';
+import {Examination} from '../../domain/examination';
 import {ExaminationService} from '../../service/examination.service';
 import {Router} from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, } from '@angular/router';
-import {Question } from '../../question';
+import {Question } from '../../domain/question';
 import { filter } from 'rxjs/operators';
 import { QuestionService } from '../../service/question.service';
 

@@ -4,9 +4,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from 'rxjs/Observable';
 // tslint:disable-next-line:import-spacing
-import{Question, ExaminationProcessRequest}  from '../question';
+import{Question, ExaminationProcessRequest}  from '../domain/question';
 import { HttpClient } from '@angular/common/http';
-import { PatientExaminationDto } from '../examination';
+import { PatientExaminationDto } from '../domain/examination';
 
 @Injectable({
   providedIn: 'root'

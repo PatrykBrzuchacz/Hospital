@@ -1,10 +1,10 @@
-import { ExaminationService } from './../../service/examination.service';
 import { Component, OnInit, Input } from '@angular/core';
 import {QuestionService} from '../../service/question.service';
-import {Question} from '../../question';
+import {Question} from '../../domain/question';
 import {Router} from '@angular/router';
-import { Examination } from '../../examination';
+import { Examination } from '../../domain/examination';
 import { ActivatedRoute, Params, } from '@angular/router';
+import { ExaminationService } from '../../service/examination.service';
 @Component({
   selector: 'app-list-questions',
   templateUrl: './list-questions.component.html',

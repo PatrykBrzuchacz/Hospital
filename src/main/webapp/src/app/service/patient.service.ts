@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from 'rxjs/Observable';
 // tslint:disable-next-line:import-spacing
-import{Patient}  from '../patient';
+import{Patient}  from '../domain/patient';
 import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class PatientService {
