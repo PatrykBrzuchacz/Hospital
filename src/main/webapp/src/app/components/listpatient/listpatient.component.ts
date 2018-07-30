@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PatientService} from '../../service/patient.service';
 import {Patient} from '../../patient';
 import {Router} from '@angular/router';
+import { MatTableDataSource } from '../../../../node_modules/@angular/material';
 
 @Component({
   selector: 'app-listpatient',
@@ -9,7 +10,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./listpatient.component.scss']
 })
 export class ListpatientComponent implements OnInit {
+
+  
+
+  
 public patients: Patient[];
+
   constructor(private _patientService: PatientService, private _router: Router) { }
 
   ngOnInit() {
@@ -34,4 +40,8 @@ createP() {
   this._patientService.setter(patient);
   this._router.navigate(['/addPatient']);
 }
+
+
+
+  
 }

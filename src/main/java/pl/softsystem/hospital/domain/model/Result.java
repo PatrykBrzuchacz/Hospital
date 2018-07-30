@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Result {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "result_value")
@@ -33,9 +33,10 @@ public class Result {
     @JoinColumn(name="id_patient_examination")
     private PatientExamination patientExamination;
 
-    public Result(String value, String questionName, Patient patient) {
+    public Result(String value, String questionName, Patient patient, PatientExamination patientExamination) {
         this.value = value;
         this.questionName = questionName;
         this.patient = patient;
+        this.patientExamination = patientExamination;
     }
 }

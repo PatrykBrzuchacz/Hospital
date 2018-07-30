@@ -26,11 +26,18 @@ public class ExaminationProcessService {
 
         Patient patient = patientRepository.getOne(examinationProcessRequest.getPatientId());
         Examination examination = examinationRepository.getOne(examinationProcessRequest.getExaminationId());
-        
-        saveResultPatientExamination(patient.createPatientExamination(),
+
+        PatientExamination patientExamination = new PatientExamination();
+        patientExamination.setExamination(examination);
+        patientExamination.setPatient(patient);
+
+        saveResultPatientExamination(patientExamination,
                 examination.getQuestions(),
                 examinationProcessRequest.getQuestionWithValues(),
                 patient);
+
+        patient.getPatientExaminations().add(patientExamination);
+
 
         return new PatientExaminationDto(patient.getName(), examination.getName());
     }
@@ -43,7 +50,7 @@ public class ExaminationProcessService {
         questions.forEach(q -> questionsWithValues.stream()
                 .filter(questionWithValueDto -> q.getId().equals(questionWithValueDto.getQuestionId()))
                 .findFirst()
-                .ifPresent(found -> patientExamination.addResult(new Result(found.getValue(), q.getName(), patient)))
+                .ifPresent(found -> patientExamination.addResult(new Result(found.getValue(), q.getName(), patient, patientExamination)))
         );
     }
 }

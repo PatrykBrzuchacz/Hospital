@@ -11,3 +11,8 @@ export class Examination {
         this.questions=[];
     }
 }
+
+export class PatientExaminationDto{
+    patientName: string;
+    examinationName: string;
+}

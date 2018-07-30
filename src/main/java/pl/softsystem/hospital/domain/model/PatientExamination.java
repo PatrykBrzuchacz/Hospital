@@ -14,7 +14,7 @@ import java.util.List;
 public class PatientExamination {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JsonIgnore

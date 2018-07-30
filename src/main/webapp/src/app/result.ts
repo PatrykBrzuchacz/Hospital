@@ -1,5 +1,6 @@
 import { Examination } from './examination';
 import { Question } from './question';
+import { Patient } from './patient';
 export class Result {
     id: Number;
     value: string;

@@ -1,7 +1,7 @@
 <!--
   <table mat-table [dataSource]="questions" class="mat-elevation-z8">
 
-      <!--- Note that these columns can be defined in any order.
+      <! Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
 <!-- Position Column 
@@ -33,13 +33,18 @@
 
   </thead>
   <tbody>
+      <tr *ngFor="let question of questionsWithResult">
+        <td>{{question.questionName}}</td>
+        <td><input type="text" [(ngModel)]="question.value"></td>
+      </tr>
+    </tbody>
+
+  <!-- <tbody>
     <tr *ngFor="let question of questions">
       <td>{{question.name}}</td>
       <td><input type="text"></td>
-
-
     </tr>
-  </tbody>
+  </tbody> -->
 </table>
 
-<button mat-flat-button color="primary">Save Result</button>
+<button mat-flat-button color="primary" (click)="saveResult()">Save Result</button>

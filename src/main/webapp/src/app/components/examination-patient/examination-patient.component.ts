@@ -40,8 +40,7 @@ export class ExaminationPatientComponent implements OnInit {
 
   openExamPatientDialog(selectedExamination, selectedPatient) {
     const dialogRef = this.dialog.open(ExaminationProcessDialogComponent, {
-      height: '400px',
-      width: '400px',
+
       data: { patient: selectedPatient, examination: selectedExamination }
 
     });

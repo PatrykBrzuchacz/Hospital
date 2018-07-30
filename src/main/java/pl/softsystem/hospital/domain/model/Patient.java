@@ -21,7 +21,7 @@ public class Patient {
 
     private Integer pesel;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PatientExamination> patientExaminations = new HashSet<>();
 
     public PatientExamination createPatientExamination() {
