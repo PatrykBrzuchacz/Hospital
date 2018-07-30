@@ -24,8 +24,10 @@ public class Patient {
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PatientExamination> patientExaminations = new HashSet<>();
 
-    public PatientExamination createPatientExamination() {
+    public PatientExamination createPatientExamination( Patient patient, Examination examination) {
         PatientExamination patientExamination = new PatientExamination();
+        patientExamination.setExamination(examination);
+        patientExamination.setPatient(patient);
         patientExaminations.add(patientExamination);
         return patientExamination;
     }
