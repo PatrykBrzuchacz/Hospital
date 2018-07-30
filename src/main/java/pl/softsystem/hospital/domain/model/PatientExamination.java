@@ -34,4 +34,5 @@ public class PatientExamination {
     public void addResult(Result result) {
         results.add(result);
     }
+
 }
