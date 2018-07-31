@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { QuestionService } from '../../service/question.service';
 import { Question, QuestionWithResult, ExaminationProcessRequest } from '../../domain/question';
 import { ExaminationProcessService } from '../../service/examination-process.service';
+import { Router } from '../../../../node_modules/@angular/router';
 
 
 
@@ -19,7 +20,8 @@ export class ExaminationProcessDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<ExaminationProcessDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private questionService: QuestionService,
-    private examinationProcessService: ExaminationProcessService) { }
+    private examinationProcessService: ExaminationProcessService,
+    private router: Router) { }
 
   //displayedColumns: string[] = ['name', 'value'];
 
@@ -52,6 +54,7 @@ export class ExaminationProcessDialogComponent implements OnInit {
     console.log(examinationProcessRequest);
 
     this.examinationProcessService.create(examinationProcessRequest).subscribe();
+    this.router.navigate(['/examinationPatient/list']);
   }
 
 

@@ -2,9 +2,9 @@ package pl.softsystem.hospital.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,8 +17,11 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min=3, message="Name should have atleast 3 characters")
     private String name;
 
+    @Size(min=8, message="Name should have atleast 3 characters")
+    @Size(max=13, message="Name should have no more than 12 characters")
     private Integer pesel;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -10,6 +10,7 @@ import pl.softsystem.hospital.application.service.Implementation.QuestionService
 import pl.softsystem.hospital.domain.repository.ExaminationRepository;
 import pl.softsystem.hospital.domain.repository.QuestionRepository;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -42,12 +43,12 @@ public class QuestionController {
     }
 
     @PostMapping
-    public Question saveQuestion(@RequestBody Question question) {
+    public Question saveQuestion(@Valid @RequestBody Question question) {
         return questionServiceImplementation.saveQuestion(question);
     }
 
     @PostMapping("examination/{id}/add")
-    public List<Question> add(@RequestBody List<Question> questions, @PathVariable("id") Long examinationId) {
+    public List<Question> add(@Valid @RequestBody List<Question> questions, @PathVariable("id") Long examinationId) {
        Examination examination=examinationServiceImplemenetation.findById(examinationId);
         for(Question question: questions){
             question.setExamination(examination);

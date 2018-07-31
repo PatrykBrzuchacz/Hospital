@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ExaminationProcessDialogComponent } from './components/examination-process-dialog/examination-process-dialog.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
+import { ExaminationPatientListComponent } from './components/examination-patient-list/examination-patient-list.component';
 
 
 
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
     ExaminationPatientComponent,
     NavbarComponent,
     ExaminationWithQuestionsComponent,
-    ExaminationProcessDialogComponent
+    ExaminationProcessDialogComponent,
+    ExaminationPatientListComponent
 
   ],
   imports: [
