@@ -20,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExaminationPatientComponent } from './components/examination-patient/examination-patient.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ExaminationWithQuestionsComponent } from './components/examination-with-questions/examination-with-questions.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -54,7 +53,6 @@ const appRoutes: Routes = [
     AddExaminationComponent,
     ExaminationPatientComponent,
     NavbarComponent,
-    ExaminationWithQuestionsComponent,
     ExaminationProcessDialogComponent,
     ExaminationPatientListComponent
 

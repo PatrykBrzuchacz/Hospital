@@ -23,6 +23,7 @@ public class PatientServiceImplementation implements PatientService {
         return patientRepository.findByName(name);
     }
 
+    @Override
     public Patient save(Patient patient) {
         return patientRepository.save(patient);
     }
@@ -34,5 +35,4 @@ public class PatientServiceImplementation implements PatientService {
 
     public void delete(Long id){
         patientRepository.deleteById(id);
-    }
-}
+    }}
