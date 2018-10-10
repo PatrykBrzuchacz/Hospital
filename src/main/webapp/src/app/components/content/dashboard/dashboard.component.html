@@ -1,0 +1,54 @@
+  <mat-toolbar color="primary" class="a">
+    <mat-toolbar-row>
+        <button mat-flat-button (click)="newPatient()">New Patient</button>
+        <button mat-flat-button color="primary" (click)="newExamination()" >New Examination</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+
+    <mat-card-title>Personal information</mat-card-title>
+    <mat-card-subtitle>Doctor:</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <h4>
+      First Name:
+      <br> Last Name:
+      <br> Specialization:
+      <br> Department:
+      <br> Description:
+    </h4>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Edit</button>
+
+  </mat-card-actions>
+</mat-card>
+
+
+
+
+<div class="tab-group">
+  <mat-tab-group>
+
+    <mat-tab label="Patients">
+      <ng-template matTabContent>
+        <app-patients-list></app-patients-list>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Examinations">
+      <ng-template matTabContent>
+        <app-examinations-list></app-examinations-list>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+
+</div>

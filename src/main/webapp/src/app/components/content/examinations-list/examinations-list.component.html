@@ -1,0 +1,44 @@
+<table mat-table [dataSource]="examinations" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let examination">{{examination.id}}</td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let examination">{{examination.name}} </td>
+    </ng-container>
+  
+    <!-- pesel Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let examination">{{examination.type}} </td>
+    </ng-container>
+  
+    <!-- edit Column -->
+    <ng-container matColumnDef="show questions">
+      <th mat-header-cell *matHeaderCellDef> Show question </th>
+      <td mat-cell *matCellDef="let examination">
+          <button mat-button color="accent" (click)="showQuestion()">Show qestion</button>
+        </td>
+    </ng-container>
+  
+    
+  <!-- delete Column -->
+  <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let examination">
+          <button mat-button color="warn" (click)="deleteExamination(examination)">Delete</button>
+        </td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
