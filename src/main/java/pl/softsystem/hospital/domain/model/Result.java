@@ -1,6 +1,5 @@
 package pl.softsystem.hospital.domain.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,20 +12,31 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Result {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "result_value")
     private String value;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_question")
-    private Question question;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id_question")
+//    private Question question;
+
+    @Column(name = "question_name", nullable = false)
+    private String questionName;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_patient")
     private Patient patient;
 
-    public Result(String value, Question question, Patient patient) {
-        this.value = value;
-        this.question = question;
-        this.patient = patient;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_patient_examination")
+    private PatientExamination patientExamination;
 
+    public Result(String value, String questionName, Patient patient, PatientExamination patientExamination) {
+        this.value = value;
+        this.questionName = questionName;
+        this.patient = patient;
+        this.patientExamination = patientExamination;
+    }
 }

@@ -6,6 +6,7 @@ import pl.softsystem.hospital.domain.model.Patient;
 import pl.softsystem.hospital.application.service.Implementation.PatientServiceImplementation;
 import pl.softsystem.hospital.domain.repository.PatientRepository;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,11 +25,11 @@ public class PatientController {
     }
 
     @PostMapping("/patients")
-    public Patient savePatient(@RequestBody Patient patient) {
+    public Patient savePatient(@Valid @RequestBody Patient patient) {
         return patientRepository.save(patient);
     }
     @PutMapping("/patients")
-    public Patient updatePatient(@RequestBody Patient patient) {
+    public Patient updatePatient(@Valid @RequestBody Patient patient) {
         return patientRepository.save(patient);
     }
     @DeleteMapping("/patient/{id}")

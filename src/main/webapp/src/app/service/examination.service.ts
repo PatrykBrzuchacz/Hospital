@@ -1,43 +1,37 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import {Observable} from 'rxjs/Observable';
-import{Examination}  from '../examination';
+import {Response} from '@angular/http';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+import {Examination} from '../domain/examination';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable()
 export class ExaminationService {
-  
+
   private baseUrl = '/api';
-  private examination = new Examination();
   constructor(private http: HttpClient) {
   }
-  getExaminations(): Observable<Examination[]>{
-   return this.http.get<Examination[]>(this.baseUrl+'/examinations');
+  getExaminations(): Observable<Examination[]> {
+   return this.http.get<Examination[]>(this.baseUrl + '/examinations');
   }
 getExaminationWithQuestions(id: Number): Observable<Examination> {
   return this.http.get<Examination>(this.baseUrl + '/examinations/' + id);
 }
 
-errorHandler(error:Response){
-  return Observable.throw(error||"SERVER ERROR");
+errorHandler(error: Response) {
+  return Observable.throw(error || 'SERVER ERROR');
   }
 
-
-  createExamination(examination:Examination){
-    return this.http.post(this.baseUrl+'/examinations',examination);
+  createExamination(examination: Examination): Observable<Examination> {
+    return this.http.post<Examination>(this.baseUrl + '/examinations', examination);
   }
 
-  updateExamination(examination:Examination){
-    return this.http.put(this.baseUrl+'/examinations',examination);
+  updateExamination(examination: Examination) {
+    return this.http.put(this.baseUrl + '/examinations', examination);
   }
-
-  setter(examination:Examination){
-    this.examination=examination;
+  delete(id: Number) {
+    return this.http.delete(this.baseUrl + '/examinations/' + id);
     }
 
-    getter() {
-    return this.examination;
-    }
 }

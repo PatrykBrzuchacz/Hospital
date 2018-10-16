@@ -10,6 +10,7 @@ import pl.softsystem.hospital.domain.model.Patient;
 import pl.softsystem.hospital.domain.repository.ExaminationRepository;
 import pl.softsystem.hospital.web.dto.ExaminationWithQuestionDto;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,14 +38,18 @@ public class ExaminationController {
     }
 
     @PostMapping
-    public Examination saveExamination(@RequestBody Examination examination){
+    public Examination saveExamination(@Valid @RequestBody Examination examination){
         return examinationServiceImplemenetation.saveExamination(examination);
     }
     @PutMapping
-    public Examination updateExamination(@RequestBody Examination examination){
+    public Examination updateExamination(@Valid @RequestBody Examination examination){
         return examinationServiceImplemenetation.saveExamination(examination);
     }
 
+    @DeleteMapping("{id}")
+    public void deleteExamination(@PathVariable("id") Long id){
+        examinationRepository.deleteById(id);
+    }
 
 
 

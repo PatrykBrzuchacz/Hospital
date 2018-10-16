@@ -11,6 +11,8 @@ import pl.softsystem.hospital.application.service.ExaminationProcessService;
 import pl.softsystem.hospital.web.dto.ExaminationProcessRequest;
 import pl.softsystem.hospital.web.dto.PatientExaminationDto;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/examination-process")
 public class ExaminationProcessController {

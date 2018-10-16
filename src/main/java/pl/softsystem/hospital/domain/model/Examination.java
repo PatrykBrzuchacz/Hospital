@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,16 +19,11 @@ public class Examination {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Size(min=3, message="Name should have atleast 3 characters")
     private String name;
 
     @Enumerated(value = EnumType.STRING)
     private ExaminationType type;
-
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "examinations")
-    private Set<Patient> patients = new HashSet<>();
 
     @OneToMany(mappedBy = "examination", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();

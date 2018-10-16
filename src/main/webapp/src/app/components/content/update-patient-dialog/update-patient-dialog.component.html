@@ -1,0 +1,12 @@
+<div class="example-container">
+    <form [formGroup]="updatePatientForm">
+        <mat-form-field>
+            <input matInput placeholder="name" [(ngModel)]="patient.name" id="name" class="form-control" data-success=" " formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="pesel" [(ngModel)]="patient.pesel" id="pesel" class="form-control" data-success=" " formControlName="pesel">
+        </mat-form-field>
+        <button mat-stroked-button (click)="updatePatient()">Save</button>
+    </form>
+</div>

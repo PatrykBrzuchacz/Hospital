@@ -1,40 +1,43 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import {Observable} from 'rxjs/Observable';
-import{Patient}  from '../patient';
+import { Response } from '@angular/http';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+
+// tslint:disable-next-line:import-spacing
+import { Patient } from '../domain/patient';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 @Injectable()
 export class PatientService {
-  private baseUrl = '/api';
 
-public patient = new Patient();
-constructor(private http: HttpClient) {
-   }
-  
-   getPatients():Observable<Patient[]> {
-    return this.http.get<Patient[]>(this.baseUrl+'/patients');
-}
-createPatient(patient:Patient){
-  return this.http.post(this.baseUrl+'/patients',patient);
-}
-deletePatient(id:Number){
-  return this.http.delete(this.baseUrl+'/patient/'+id);
-}
-updatePatient(patient:Patient){
-  return this.http.put(this.baseUrl+'/patients',patient);
-}
+    private baseUrl = '/api';
 
-errorHandler(error:Response){
-return Observable.throw(error||"SERVER ERROR");
-}
+    public patient = new Patient();
+    constructor(private http: HttpClient) {
+    }
 
-setter(patient:Patient){
-this.patient=patient;
-}
-getter(){
-  return this.patient;
-}
+    getPatients(): Observable<Patient[]> {
+        return this.http.get<Patient[]>(this.baseUrl + '/patients');
+    }
+    createPatient(patient: Patient) {
+        return this.http.post(this.baseUrl + '/patients', patient);
+    }
+    deletePatient(id: Number) {
+        return this.http.delete(this.baseUrl + '/patient/' + id);
+    }
+    updatePatient(patient: Patient) {
+        return this.http.put(this.baseUrl + '/patients', patient);
+    }
+
+    // errorHandler(error: Response) {
+    // return Observable.throw(error || 'SERVER ERROR');
+    // }
+
+    setter(patient: Patient) {
+        this.patient = patient;
+    }
+    getter() {
+        return this.patient;
+    }
 }

@@ -18,10 +18,21 @@ public class PatientServiceImplementation implements PatientService {
         return patientRepository.findAll();
     }
 
+    @Override
+    public Patient findByName(String name) {
+        return patientRepository.findByName(name);
+    }
+
+    @Override
     public Patient save(Patient patient) {
         return patientRepository.save(patient);
     }
+
+    @Override
+    public Patient findByPesel(Integer pesel) {
+        return patientRepository.findByPesel(pesel);
+    }
+
     public void delete(Long id){
         patientRepository.deleteById(id);
-    }
-}
+    }}

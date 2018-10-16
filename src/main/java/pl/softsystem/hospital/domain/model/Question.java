@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,21 +16,11 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min=3, message="Name should have atleast 3 characters")
     private String name;
 
-@JsonIgnore
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_examination")
     private Examination examination;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Result> results = new HashSet<>();
-
-    public void addResult(Result result) {
-        if (result != null) {
-            results.add(result);
-        }
-    }
 }
-

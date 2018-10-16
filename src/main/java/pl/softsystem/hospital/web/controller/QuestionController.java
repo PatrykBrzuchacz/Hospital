@@ -10,10 +10,11 @@ import pl.softsystem.hospital.application.service.Implementation.QuestionService
 import pl.softsystem.hospital.domain.repository.ExaminationRepository;
 import pl.softsystem.hospital.domain.repository.QuestionRepository;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/question/")
 @CrossOrigin(origins="http://localhost:4200",allowedHeaders = "*")
 public class QuestionController {
 
@@ -36,20 +37,23 @@ public class QuestionController {
         return questionServiceImplementation.saveQuestion(question);
     }*/
 
-    @GetMapping("/question/{id}")
+    @GetMapping("/{id}")
     public List<Question> DisplayQuestions(@PathVariable Long id) {
           return questionRepository.findAllByExaminationId(id);
     }
 
-    @PostMapping("/question")
-    public Question saveQuestion(@RequestBody Question question) {
+    @PostMapping
+    public Question saveQuestion(@Valid @RequestBody Question question) {
         return questionServiceImplementation.saveQuestion(question);
     }
 
     @PostMapping("examination/{id}/add")
-    public Question add(@RequestBody Question question, @PathVariable("id") Long examinationId) {
-        question.setExamination(examinationServiceImplemenetation.findById(examinationId));
-        return questionServiceImplementation.saveQuestion(question);
+    public List<Question> add(@Valid @RequestBody List<Question> questions, @PathVariable("id") Long examinationId) {
+       Examination examination=examinationServiceImplemenetation.findById(examinationId);
+        for(Question question: questions){
+            question.setExamination(examination);
+        }
+       return questionServiceImplementation.saveAll(questions);
     }
 
 }

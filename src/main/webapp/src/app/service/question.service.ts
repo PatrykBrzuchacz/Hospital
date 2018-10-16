@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import {Observable} from 'rxjs/Observable';
-import{Question}  from '../question';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+// tslint:disable-next-line:import-spacing
+import{Question}  from '../domain/question';
 import { HttpClient } from '@angular/common/http';
-@Injectable({
-  providedIn: 'root'
-})
+import { Observable } from 'rxjs/internal/Observable';
+
+@Injectable()
 export class QuestionService {
 
-  //private baseUrlProxyShouldBe: string='http://localhost:8080/'; //todo proxy
 
-  private baseUrl = 'api/questions/';
-    
+  private baseUrl = 'api/question/';
   constructor(private http: HttpClient) {
   }
 
   getQuestions(id: Number): Observable<Question[]> {
     return this.http.get<Question[]>(this.baseUrl  + id);
+<<<<<<< HEAD
   } 
   
   
 }
+=======
+  }
+  addAll(questions: Question[], id: number): Observable<Question[]> {
+    return this.http.post<Question[]>(this.baseUrl+'examination/' + id + '/add', questions);
+  }
+}
+>>>>>>> branch-1.0

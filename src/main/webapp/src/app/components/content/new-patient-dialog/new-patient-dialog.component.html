@@ -1,0 +1,30 @@
+<div class="body">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>New Patient form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="example-container">
+        <form [formGroup]="newPatientForm">
+          <mat-form-field>
+            <input matInput placeholder="name" id="firstName" class="form-control" data-success=" " formControlName="name" [(ngModel)]="patient.name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="pesel" id="pesel" class="form-control" data-success=" " formControlName="pesel" [(ngModel)]="patient.pesel">
+          </mat-form-field>
+
+          <button mat-stroked-button (click)="registerPatient()" [disabled]="newPatientForm.invalid" class="btn btn-deep-orange waves-light"
+            mdbWavesEffect>Save</button>
+
+        </form>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+  </mat-card>
+</div>
