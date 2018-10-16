@@ -82,11 +82,12 @@ export class NewExaminationDialogComponent implements OnInit {
   
       this.questionService.addAll(this.questionList, examination.id).subscribe((questionRes: any) => {
         this.questionList = questionRes as Question[];
-        for (let i = 0; i < this.questionList.length; i++) {
+        
+        console.log("Id tego examiantiona");
+        console.log(examination.id);
+        console.log("questioony tego examiantiona")
 
-          console.log(this.questionList[i]);
-        }
-        console.log("questiony przypisane");
+        console.log(examination.questions);
 
         this.questionList = [];
       }
@@ -97,12 +98,29 @@ export class NewExaminationDialogComponent implements OnInit {
     
   }
 
-  addQuestion(questionName) {
-    this.question = new Question(null, questionName);
-    this.questionList.push(this.question);
+  addQuestion(question: any) {
+    // this.question = new Question(null, question.name);
+    // this.questionList.push(this.question);
+    // this.questionForm.reset();
+    // console.log("Question added to questionList");
+    // console.log(this.questionList);
+    const questionName = question.name.trim();
+    const q: Question = new Question(null, questionName);
+    this.questionList.push(q);
     this.questionForm.reset();
-    console.log("Question added to questionList");
   }
+
+  // onQuestionSubmit(value: any) {
+  //   console.log('Dodaj questiona');
+  //   const questionN = value.name.trim();
+  //   console.log(questionN);
+  //   const q: Question = new Question(null, questionN);
+  //   console.log(q.name);
+  //   this.questionList.push(q);
+  //   this.questionForm.reset();
+  // }
+
+
 
   createQuestion() {
 

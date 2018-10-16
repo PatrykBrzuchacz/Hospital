@@ -29,6 +29,14 @@
       </td>
   </ng-container>
 
+   <!-- make examination Column -->
+   <ng-container matColumnDef="make examination">
+    <th mat-header-cell *matHeaderCellDef> Make examination </th>
+    <td mat-cell *matCellDef="let patient">
+        <button mat-button color="primary" (click)="makeExamination(patient)">Add Examination</button>
+      </td>
+  </ng-container>
+
   
 <!-- delete Column -->
 <ng-container matColumnDef="delete">

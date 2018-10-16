@@ -6,14 +6,14 @@
       </mat-form-field>
 
       <mat-form-field>
-          <mat-select placeholder="type" id="type" class="form-control" data-success=" " formControlName="type" [(ngModel)]="examination.type">
-              <mat-option *ngFor="let type of types" [value]="type.value">
-                {{type.value}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <mat-select placeholder="type" id="type" class="form-control" data-success=" " formControlName="type" [(ngModel)]="examination.type">
+          <mat-option *ngFor="let type of types" [value]="type.value">
+            {{type.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-           <button mat-stroked-button (click)="saveExamination()" [disabled]="newExaminationForm.invalid" class="btn btn-deep-orange waves-light"
+      <button mat-stroked-button (click)="saveExamination()" [disabled]="newExaminationForm.invalid" class="btn btn-deep-orange waves-light"
         mdbWavesEffect>Save</button>
     </mat-card>
 
@@ -27,20 +27,21 @@
         <input matInput placeholder="name" id="name" class="form-control" data-success=" " formControlName="name" [(ngModel)]="question.name">
       </mat-form-field>
 
-      <button mat-stroked-button (click)="addQuestion(question.name)" class="btn btn-deep-orange waves-light" mdbWavesEffect>Add</button>
+      <button mat-stroked-button (click)="addQuestion(question)" class="btn btn-deep-orange waves-light" mdbWavesEffect>Add</button>
 
-      
-
-      <mat-list role="list">
-          <mat-list-item role="listitem">{{question.name}}</mat-list-item>
-
-        <mat-list-item *ngFor="let question of questionList" role="listitem">{{question.name}}</mat-list-item>
-      </mat-list>
-
-      
 
     </mat-card>
   </form>
+
+  <mat-list role="list">
+    <mat-list-item role="listitem">{{question.name}}</mat-list-item> 
+
+    <mat-list-item *ngFor="let question of questionList" role="listitem">{{question.name}}</mat-list-item> 
+  </mat-list>
+
+
+
+
 
 
 </div>

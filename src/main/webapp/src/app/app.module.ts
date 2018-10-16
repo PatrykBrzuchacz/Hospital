@@ -50,6 +50,7 @@ import { ExaminationsListComponent } from './components/content/examinations-lis
 import { ExaminationService } from './service/examination.service';
 import { NewExaminationDialogComponent } from './components/content/new-examination-dialog/new-examination-dialog.component';
 import { QuestionService } from './service/question.service';
+import { AddExamToPatientDialogComponent } from './components/content/dashboard/add-exam-to-patient-dialog/add-exam-to-patient-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -71,6 +72,7 @@ const appRoutes: Routes = [
     NewPatientDialogComponent,
     ExaminationsListComponent,
     NewExaminationDialogComponent,
+    AddExamToPatientDialogComponent,
     
   ],
   imports: [
@@ -102,7 +104,8 @@ const appRoutes: Routes = [
     RegistrationDialogComponent,
     UpdatePatientDialogComponent,
     NewPatientDialogComponent,
-    NewExaminationDialogComponent
+    NewExaminationDialogComponent,
+    AddExamToPatientDialogComponent
   ],
 
   providers: [
