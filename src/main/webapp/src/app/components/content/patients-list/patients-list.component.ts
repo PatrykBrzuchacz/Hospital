@@ -4,7 +4,6 @@ import { PatientService } from '../../../service/patient.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { UpdatePatientDialogComponent } from '../update-patient-dialog/update-patient-dialog.component';
-import { AddExamToPatientDialogComponent } from '../dashboard/add-exam-to-patient-dialog/add-exam-to-patient-dialog.component';
 
 @Component({
   selector: 'app-patients-list',
@@ -13,7 +12,7 @@ import { AddExamToPatientDialogComponent } from '../dashboard/add-exam-to-patien
 })
 export class PatientsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'pesel', 'edit', 'make examination', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'pesel', 'edit', 'delete'];
   public patients: Patient[];
 
   constructor(private patientService: PatientService, private router: Router, public dialog: MatDialog) { }
@@ -46,15 +45,7 @@ export class PatientsListComponent implements OnInit {
   }
 
 
-  makeExamination(patient){
-    const dialogRef = this.dialog.open(AddExamToPatientDialogComponent, {
-      width: '400px',
-      data: { patient: patient },
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
+  
     
 
 }

@@ -5,6 +5,11 @@
 //@import '~@angular/material/prebuilt-themes/purple-green.css';
 
 body{
-    background-color:rgba(252, 252, 252, 0.959);
     margin: 0;
+}
+
+
+app-footer{
+    height: 300px;
+    background-color: black;
 }

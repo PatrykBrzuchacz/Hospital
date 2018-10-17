@@ -22,12 +22,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
-
-
-
-
-
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -50,12 +45,17 @@ import { ExaminationsListComponent } from './components/content/examinations-lis
 import { ExaminationService } from './service/examination.service';
 import { NewExaminationDialogComponent } from './components/content/new-examination-dialog/new-examination-dialog.component';
 import { QuestionService } from './service/question.service';
-import { AddExamToPatientDialogComponent } from './components/content/dashboard/add-exam-to-patient-dialog/add-exam-to-patient-dialog.component';
+import { LoginPageComponent } from './components/content/login-page/login-page.component';
+import { FooterComponent } from './components/footer/footer/footer.component';
+import { PatientRegistrationComponent } from './components/content/patient-registration/patient-registration.component';
+import { DoctorRegistrationComponent } from './components/content/doctor-registration/doctor-registration.component';
 
 
 const appRoutes: Routes = [
-  {path: '', component: DashboardComponent},
-  {path: 'home', component: HomepageComponent}
+  {path: '', component: LoginPageComponent},
+  {path: 'home', component: HomepageComponent},
+  {path: 'patient-registration', component: PatientRegistrationComponent},
+  {path: 'doctor-registration', component: DoctorRegistrationComponent}
 ];
 
 
@@ -72,7 +72,11 @@ const appRoutes: Routes = [
     NewPatientDialogComponent,
     ExaminationsListComponent,
     NewExaminationDialogComponent,
-    AddExamToPatientDialogComponent,
+    LoginPageComponent,
+    FooterComponent,
+    PatientRegistrationComponent,
+    DoctorRegistrationComponent
+    
     
   ],
   imports: [
@@ -98,14 +102,14 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatTabsModule,
     LayoutModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   entryComponents: [
     RegistrationDialogComponent,
     UpdatePatientDialogComponent,
     NewPatientDialogComponent,
     NewExaminationDialogComponent,
-    AddExamToPatientDialogComponent
   ],
 
   providers: [
