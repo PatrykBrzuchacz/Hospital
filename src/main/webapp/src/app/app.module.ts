@@ -31,7 +31,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { HomepageComponent } from './components/content/homepage/homepage.component';
 import { DashboardComponent } from './components/content/dashboard/dashboard.component';
-import { SidebarComponent } from './components/sidebar/sidebar/sidebar.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { RegistrationDialogComponent } from './components/content/registration-dialog/registration-dialog.component';
 import { UserService } from './service/userService';
@@ -49,13 +48,16 @@ import { LoginPageComponent } from './components/content/login-page/login-page.c
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { PatientRegistrationComponent } from './components/content/patient-registration/patient-registration.component';
 import { DoctorRegistrationComponent } from './components/content/doctor-registration/doctor-registration.component';
-
+import { MainPageComponent } from './components/content/main-page/main-page.component';
+import { SidenavComponent } from './components/sidebar/sidenav/sidenav.component';
+import { PatientMainPageComponent } from './components/content/patient-main-page/patient-main-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: LoginPageComponent},
   {path: 'home', component: HomepageComponent},
   {path: 'patient-registration', component: PatientRegistrationComponent},
-  {path: 'doctor-registration', component: DoctorRegistrationComponent}
+  {path: 'doctor-registration', component: DoctorRegistrationComponent},
+  {path: 'patient-main-page', component: PatientMainPageComponent}
 ];
 
 
@@ -65,7 +67,6 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomepageComponent,
     DashboardComponent,
-    SidebarComponent,
     RegistrationDialogComponent,
     PatientsListComponent,
     UpdatePatientDialogComponent,
@@ -75,7 +76,11 @@ const appRoutes: Routes = [
     LoginPageComponent,
     FooterComponent,
     PatientRegistrationComponent,
-    DoctorRegistrationComponent
+    DoctorRegistrationComponent,
+    MainPageComponent,
+    SidenavComponent,
+    PatientMainPageComponent
+    
     
     
   ],

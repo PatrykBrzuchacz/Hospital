@@ -1,0 +1,49 @@
+
+
+.dashboard-card {
+margin-left:200px;
+height: 300px;
+width:100%;
+
+  .avatar-container{
+    height: 100%;
+    width:20%;
+    float:left;
+
+    
+
+    .avatar-card{
+      height: 100%;
+      width:100%;
+      background-color:#41cec5ef;
+      padding: 0;
+      text-align: center;
+
+    }
+  }
+
+  .personal-information-container{
+    float: left;
+    height: 100%;
+    width:80%;
+
+    
+  
+    .personal-information-card{
+      height: 100%;
+      width:100%;
+      background-color:#41cec4;
+      padding: 0;
+
+  
+  
+    }
+  
+  }
+}
+
+
+
+
+
+
