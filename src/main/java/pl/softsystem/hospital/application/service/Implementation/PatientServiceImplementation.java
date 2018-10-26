@@ -33,6 +33,11 @@ public class PatientServiceImplementation implements PatientService {
         return patientRepository.findByPesel(pesel);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         patientRepository.deleteById(id);
-    }}
+    }
+
+    public void deleteAll() {
+        patientRepository.deleteAll();
+    }
+}

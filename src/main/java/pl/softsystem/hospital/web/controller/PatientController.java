@@ -2,6 +2,7 @@ package pl.softsystem.hospital.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.softsystem.hospital.application.service.PatientService;
 import pl.softsystem.hospital.domain.model.Patient;
 import pl.softsystem.hospital.application.service.Implementation.PatientServiceImplementation;
 import pl.softsystem.hospital.domain.repository.PatientRepository;
@@ -15,13 +16,14 @@ import java.util.List;
 public class PatientController {
 
     @Autowired
-    private PatientServiceImplementation patientServiceImplementation;
+    private PatientService patientService;
+
 
     @Autowired
     private PatientRepository patientRepository;
     @GetMapping("/patients")
     public List<Patient> getAll() {
-        return patientServiceImplementation.findAllPatients();
+        return patientService.findAllPatients();
     }
 
     @PostMapping("/patients")
@@ -33,7 +35,7 @@ public class PatientController {
         return patientRepository.save(patient);
     }
     @DeleteMapping("/patient/{id}")
-    public void savePatient(@PathVariable Long id) {
+    public void deletePatient(@PathVariable Long id) {
          patientRepository.deleteById(id);
     }
 }

@@ -9,6 +9,6 @@ public interface PatientService {
 
     Patient findByName(String name);
     Patient save(Patient patient);
-
+    void deleteAll();
     Patient findByPesel(Integer pesel);
 }
