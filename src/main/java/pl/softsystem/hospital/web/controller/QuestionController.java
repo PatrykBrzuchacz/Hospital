@@ -1,6 +1,7 @@
 package pl.softsystem.hospital.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.softsystem.hospital.domain.model.Examination;
 import pl.softsystem.hospital.domain.model.ExaminationType;
@@ -12,7 +13,7 @@ import pl.softsystem.hospital.domain.repository.QuestionRepository;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@PreAuthorize("hasRole('DOCTOR')")
 @RestController
 @RequestMapping("/api/question/")
 @CrossOrigin(origins="http://localhost:4200",allowedHeaders = "*")
