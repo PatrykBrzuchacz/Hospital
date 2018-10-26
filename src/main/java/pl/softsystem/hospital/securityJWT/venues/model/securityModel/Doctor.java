@@ -2,6 +2,7 @@ package pl.softsystem.hospital.securityJWT.venues.model.securityModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import pl.softsystem.hospital.domain.model.Patient;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,10 +10,10 @@ import java.util.Set;
 
 @Data
 @Entity
-public class User {
+public class Doctor {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
     private String username;
@@ -26,6 +27,9 @@ public class User {
             @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
             @JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles = new HashSet<>();;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Patient> doctorPatients = new HashSet<>();
 
     public long getId() {
         return id;

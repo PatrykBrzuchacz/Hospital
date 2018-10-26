@@ -1,7 +1,9 @@
 package pl.softsystem.hospital.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import pl.softsystem.hospital.securityJWT.venues.model.securityModel.Doctor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -24,6 +26,11 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PatientExamination> patientExaminations = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="id_doctor")
+    private Doctor doctor;
 
     public PatientExamination createPatientExamination( Patient patient, Examination examination) {
         PatientExamination patientExamination = new PatientExamination();
