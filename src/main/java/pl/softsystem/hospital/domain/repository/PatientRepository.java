@@ -7,4 +7,5 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     Patient findByName(String name);
     Patient findByPesel(Integer pesel);
+    void deleteAll();
 }
