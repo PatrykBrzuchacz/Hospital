@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
+
+    Question save(Question question);
     List<Question> findAllByExaminationId(Long id);
 }

@@ -1,9 +1,15 @@
 package pl.softsystem.hospital.securityJWT.venues.model.securityModel;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Data
 public class Role {
@@ -18,37 +24,6 @@ public class Role {
 
     @Column
     private String description;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public Role(long id, String description, String name)
-    {
-        this.id=id; this.name=name; this.description=description;
-    };
-    public Role(){};
-
-    //@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "roles" )
-    // private Set<User> users = new HashSet<>();;
+    @OneToMany(mappedBy ="roles", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
 }

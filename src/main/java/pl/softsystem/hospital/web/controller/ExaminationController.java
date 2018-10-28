@@ -40,11 +40,11 @@ public class ExaminationController {
 
     @PostMapping
     public Examination saveExamination(@Valid @RequestBody Examination examination){
-        return examinationServiceImplemenetation.saveExamination(examination);
+        return examinationRepository.save(examination);
     }
     @PutMapping
     public Examination updateExamination(@Valid @RequestBody Examination examination){
-        return examinationServiceImplemenetation.saveExamination(examination);
+        return examinationRepository.save(examination);
     }
 
     @DeleteMapping("{id}")

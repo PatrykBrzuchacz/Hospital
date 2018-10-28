@@ -24,14 +24,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 
 
-
-
-
-
-
-
-
-
 //-----------
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { HomepageComponent } from './components/content/homepage/homepage.component';
@@ -50,16 +42,7 @@ import { ExaminationsListComponent } from './components/content/examinations-lis
 import { ExaminationService } from './service/examination.service';
 import { NewExaminationDialogComponent } from './components/content/new-examination-dialog/new-examination-dialog.component';
 import { QuestionService } from './service/question.service';
-<<<<<<< HEAD
-import { AddExaminationComponent } from './components/add-examination/add-examination.component';
-import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, MatDialogModule, MatInputModule } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MyDialogComponent } from './components/my-dialog/my-dialog.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-=======
-import { AddExamToPatientDialogComponent } from './components/content/dashboard/add-exam-to-patient-dialog/add-exam-to-patient-dialog.component';
->>>>>>> branch-1.0
+import { AddExamToPatientDialogComponent } from './components/content/add-exam-to-patient-dialog/add-exam-to-patient-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -104,10 +87,6 @@ const appRoutes: Routes = [
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
-    MatFormFieldModule,
-    MatInputModule,
-=======
     HttpClientModule,
     MatTabsModule,
     LayoutModule,
@@ -119,7 +98,6 @@ const appRoutes: Routes = [
     NewPatientDialogComponent,
     NewExaminationDialogComponent,
     AddExamToPatientDialogComponent
->>>>>>> branch-1.0
   ],
 
   providers: [

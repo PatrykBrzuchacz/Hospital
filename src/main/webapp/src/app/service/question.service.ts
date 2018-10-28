@@ -17,15 +17,8 @@ export class QuestionService {
 
   getQuestions(id: Number): Observable<Question[]> {
     return this.http.get<Question[]>(this.baseUrl  + id);
-<<<<<<< HEAD
-  } 
-  
-  
-}
-=======
   }
   addAll(questions: Question[], id: number): Observable<Question[]> {
     return this.http.post<Question[]>(this.baseUrl+'examination/' + id + '/add', questions);
   }
 }
->>>>>>> branch-1.0

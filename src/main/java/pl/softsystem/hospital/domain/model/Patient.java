@@ -3,7 +3,7 @@ package pl.softsystem.hospital.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import pl.softsystem.hospital.securityJWT.venues.model.securityModel.Doctor;
+import pl.softsystem.hospital.securityJWT.venues.model.securityModel.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -30,7 +30,7 @@ public class Patient {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name="id_doctor")
-    private Doctor doctor;
+    private User user;
 
     public PatientExamination createPatientExamination( Patient patient, Examination examination) {
         PatientExamination patientExamination = new PatientExamination();

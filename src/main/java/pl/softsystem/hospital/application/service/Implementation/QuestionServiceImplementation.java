@@ -10,14 +10,10 @@ import java.util.List;
 
 @Service
 public class QuestionServiceImplementation implements QuestionService{
+
     @Autowired
     private QuestionRepository questionRepository;
 
-    @Override
-    public Question saveQuestion(Question question) {
-
-        return questionRepository.save(question);
-    }
     public List<Question> saveAll(List<Question> questions){
        return questionRepository.saveAll(questions);
     };

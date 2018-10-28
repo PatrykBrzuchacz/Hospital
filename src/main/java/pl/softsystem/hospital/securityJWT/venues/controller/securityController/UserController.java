@@ -5,10 +5,12 @@ package pl.softsystem.hospital.securityJWT.venues.controller.securityController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pl.softsystem.hospital.securityJWT.venues.model.securityModel.Doctor;
+import pl.softsystem.hospital.securityJWT.venues.model.securityModel.User;
 
-import pl.softsystem.hospital.securityJWT.venues.model.securityModel.UserDto;
-import pl.softsystem.hospital.securityJWT.venues.service.DoctorService;
+import pl.softsystem.hospital.securityJWT.venues.model.securityModel.LoginUser;
+import pl.softsystem.hospital.securityJWT.venues.repository.UserDao;
+
+import pl.softsystem.hospital.securityJWT.venues.service.UserService;
 
 
 import java.util.List;
@@ -18,26 +20,28 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private DoctorService doctorService;
+    private UserService doctorService;
 
+    @Autowired
+    private UserDao doctorDao;
     //@Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value="/users", method = RequestMethod.GET)
-    public List<Doctor> listUser(){
-        return doctorService.findAll();
+    public List<User> listUser(){
+        return doctorDao.findAll();
     }
 
     //@Secured("ROLE_USER")
     @PreAuthorize("hasRole('DOCTOR')")
     ////@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public Doctor getOne(@PathVariable(value = "id") Long id){
-        return doctorService.findById(id);
+    public User getOne(@PathVariable(value = "id") Long id){
+        return doctorDao.getById(id);
     }
 
 
     @RequestMapping(value="/signup", method = RequestMethod.POST)
-    public Doctor saveUser(@RequestBody UserDto user){
+    public User saveUser(@RequestBody LoginUser user){
         return doctorService.save(user);
     }
 

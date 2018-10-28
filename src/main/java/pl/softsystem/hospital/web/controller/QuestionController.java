@@ -13,6 +13,8 @@ import pl.softsystem.hospital.domain.repository.QuestionRepository;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+
 @PreAuthorize("hasRole('DOCTOR')")
 @RestController
 @RequestMapping("/api/question/")
@@ -31,12 +33,6 @@ public class QuestionController {
     @Autowired
     private QuestionRepository questionRepository;
 
-  /*  @PostMapping("/question/{type}")
-    public Question saveQuestion(@RequestBody Question question, @PathVariable ExaminationType type) {
-        Examination examination = examinationServiceImplemenetation.getExaminationByType(type);
-        question.setExamination(examination);
-        return questionServiceImplementation.saveQuestion(question);
-    }*/
 
     @GetMapping("/{id}")
     public List<Question> DisplayQuestions(@PathVariable Long id) {
@@ -45,12 +41,12 @@ public class QuestionController {
 
     @PostMapping
     public Question saveQuestion(@Valid @RequestBody Question question) {
-        return questionServiceImplementation.saveQuestion(question);
+        return questionRepository.save(question);
     }
 
     @PostMapping("examination/{id}/add")
     public List<Question> add(@Valid @RequestBody List<Question> questions, @PathVariable("id") Long examinationId) {
-       Examination examination=examinationServiceImplemenetation.findById(examinationId);
+       Examination examination=examinationRepository.getExaminationById(examinationId);
         for(Question question: questions){
             question.setExamination(examination);
         }

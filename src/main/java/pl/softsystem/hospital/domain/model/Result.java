@@ -18,10 +18,6 @@ public class Result {
     @Column(name = "result_value")
     private String value;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "id_question")
-//    private Question question;
-
     @Column(name = "question_name", nullable = false)
     private String questionName;
 

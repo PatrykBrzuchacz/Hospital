@@ -1,8 +1,7 @@
-package pl.softsystem.hospital;
+package pl.softsystem.hospital.ControllerTest;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -25,12 +24,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.bytebuddy.asm.Advice;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -43,6 +41,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.softsystem.hospital.application.service.PatientService;
 import pl.softsystem.hospital.domain.model.Patient;
+import pl.softsystem.hospital.domain.repository.PatientRepository;
 import pl.softsystem.hospital.web.controller.PatientController;
 
 @WebAppConfiguration
@@ -50,8 +49,12 @@ import pl.softsystem.hospital.web.controller.PatientController;
 public class PatientControllerTest {
 
     private MockMvc mockMvc;
+
     @Mock
     private PatientService patientService;
+
+    @Mock
+    private PatientRepository patientRepository;
     @InjectMocks
     private PatientController patientController;
 
@@ -69,7 +72,7 @@ public class PatientControllerTest {
         List<Patient> patients = Arrays.asList(
                 new Patient((long) 1, "Daenerys", 212311231),
                 new Patient((long) 2, "Daenerys2", 1112311231));
-        when(patientService.findAllPatients()).thenReturn(patients);
+        when(patientRepository.findAll()).thenReturn(patients);
 
         mockMvc.perform(get("/api/patients"))
                 .andExpect(status().isOk())
@@ -81,8 +84,26 @@ public class PatientControllerTest {
                 .andExpect(jsonPath("$[1].id", is(2)))
                 .andExpect(jsonPath("$[1].name", is("Daenerys2")))
                 .andExpect(jsonPath("$[1].pesel", is(1112311231)));
-        verify(patientService, times(1)).findAllPatients();
+        verify(patientRepository, times(1)).findAll();
         verifyNoMoreInteractions(patientService);
+    }
+@Test
+    public void saveOrUpdatePatientTest() throws Exception {
+          Patient patient = new Patient((long) 1, "Daenerys", 212311231);
+
+          when(patientRepository.save(Matchers.<Patient>any())).thenReturn(patient);
+mockMvc.perform(post("api/patients")
+    .param("id","1")
+    .param("name","Daenerys")
+    .param("pesel","212311231"))
+        .andExpect(status().isOk());
+
+  ArgumentCaptor<Patient> patientArgumentCaptor = ArgumentCaptor.forClass(Patient.class);
+    verify((patientRepository).save(patientArgumentCaptor.capture()));
+
+    assertEquals(java.util.Optional.of(1L),patientArgumentCaptor.getValue().getId());
+    assertEquals("Daenerys",patientArgumentCaptor.getValue().getName());
+    assertEquals("212311231",patientArgumentCaptor.getValue().getPesel());
     }
 
     /*@Test

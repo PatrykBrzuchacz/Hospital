@@ -4,7 +4,7 @@ import { PatientService } from '../../../service/patient.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { UpdatePatientDialogComponent } from '../update-patient-dialog/update-patient-dialog.component';
-import { AddExamToPatientDialogComponent } from '../dashboard/add-exam-to-patient-dialog/add-exam-to-patient-dialog.component';
+import { AddExamToPatientDialogComponent } from '../add-exam-to-patient-dialog/add-exam-to-patient-dialog.component';
 
 @Component({
   selector: 'app-patients-list',
