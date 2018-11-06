@@ -6,6 +6,7 @@ import pl.softsystem.hospital.domain.model.ExaminationType;
 import pl.softsystem.hospital.domain.model.Question;
 
 import java.util.List;
+
 @Getter
 @Setter
 public class ExaminationWithQuestionDto {

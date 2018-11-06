@@ -1,48 +1,29 @@
 package pl.softsystem.hospital.ControllerTest;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import net.bytebuddy.asm.Advice;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.softsystem.hospital.application.service.PatientService;
 import pl.softsystem.hospital.domain.model.Patient;
 import pl.softsystem.hospital.domain.repository.PatientRepository;
 import pl.softsystem.hospital.web.controller.PatientController;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -87,23 +68,24 @@ public class PatientControllerTest {
         verify(patientRepository, times(1)).findAll();
         verifyNoMoreInteractions(patientService);
     }
-@Test
+
+    @Test
     public void saveOrUpdatePatientTest() throws Exception {
-          Patient patient = new Patient((long) 1, "Daenerys", 212311231);
+        Patient patient = new Patient((long) 1, "Daenerys", 212311231);
 
-          when(patientRepository.save(Matchers.<Patient>any())).thenReturn(patient);
-mockMvc.perform(post("api/patients")
-    .param("id","1")
-    .param("name","Daenerys")
-    .param("pesel","212311231"))
-        .andExpect(status().isOk());
+        when(patientRepository.save(Matchers.<Patient>any())).thenReturn(patient);
+        mockMvc.perform(post("api/patients")
+                .param("id", "1")
+                .param("name", "Daenerys")
+                .param("pesel", "212311231"))
+                .andExpect(status().isOk());
 
-  ArgumentCaptor<Patient> patientArgumentCaptor = ArgumentCaptor.forClass(Patient.class);
-    verify((patientRepository).save(patientArgumentCaptor.capture()));
+        ArgumentCaptor<Patient> patientArgumentCaptor = ArgumentCaptor.forClass(Patient.class);
+        verify((patientRepository).save(patientArgumentCaptor.capture()));
 
-    assertEquals(java.util.Optional.of(1L),patientArgumentCaptor.getValue().getId());
-    assertEquals("Daenerys",patientArgumentCaptor.getValue().getName());
-    assertEquals("212311231",patientArgumentCaptor.getValue().getPesel());
+        assertEquals(java.util.Optional.of(1L), patientArgumentCaptor.getValue().getId());
+        assertEquals("Daenerys", patientArgumentCaptor.getValue().getName());
+        assertEquals("212311231", patientArgumentCaptor.getValue().getPesel());
     }
 
     /*@Test

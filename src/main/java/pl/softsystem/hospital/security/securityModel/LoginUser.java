@@ -1,7 +1,9 @@
-package pl.softsystem.hospital.securityJWT.venues.model.securityModel;
+package pl.softsystem.hospital.security.securityModel;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
+@AllArgsConstructor
 @Data
 public class LoginUser {
 

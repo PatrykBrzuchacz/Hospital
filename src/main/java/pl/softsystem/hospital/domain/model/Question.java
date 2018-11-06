@@ -7,8 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -18,7 +16,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min=3, message="Name should have atleast 3 characters")
+    @Size(min = 3, message = "Name should have atleast 3 characters")
     private String name;
 
     @JsonIgnore
@@ -28,8 +26,8 @@ public class Question {
 
 
     public Question(Long id, String name, Examination examination) {
-        this.id=id;
-        this.name=name;
- this.examination=examination;
+        this.id = id;
+        this.name = name;
+        this.examination = examination;
     }
 }

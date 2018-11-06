@@ -28,7 +28,7 @@ public class ExaminationProcessService {
         Examination examination = examinationRepository.getOne(examinationProcessRequest.getExaminationId());
 
 
-        PatientExamination patientExamination=patient.createPatientExamination(patient, examination);
+        PatientExamination patientExamination = patient.createPatientExamination(patient, examination);
 
 
         saveResultPatientExamination(patientExamination,

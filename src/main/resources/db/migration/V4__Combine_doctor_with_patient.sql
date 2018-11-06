@@ -11,6 +11,8 @@ CREATE TABLE `role` (
 `name` varchar(255),
 PRIMARY KEY (`id`));
 
+alter table user
+add constraint FKrhfovtciq1l558cw6udg0h0d3 foreign key(id_role) references role (id) on delete cascade;
 
 alter table patient
 add column id_doctor bigint,

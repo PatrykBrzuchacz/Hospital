@@ -1,4 +1,4 @@
-package pl.softsystem.hospital.securityJWT.venues.config;
+package pl.softsystem.hospital.security.config;
 
 
 import org.springframework.security.core.AuthenticationException;
@@ -16,7 +16,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
-                    AuthenticationException authException) throws IOException {
+                         AuthenticationException authException) throws IOException {
 
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }

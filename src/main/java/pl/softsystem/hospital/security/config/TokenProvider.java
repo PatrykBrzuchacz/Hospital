@@ -1,9 +1,8 @@
-package pl.softsystem.hospital.securityJWT.venues.config;
+package pl.softsystem.hospital.security.config;
 
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,13 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static pl.softsystem.hospital.securityJWT.venues.model.securityModel.Constants.*;
+import static pl.softsystem.hospital.security.securityModel.Constants.*;
 
 @Component
 public class TokenProvider {
 
 
-    public static void generateToken(HttpServletResponse res, String username, String userRole ) {
+    public static String generateToken(HttpServletResponse res, String username, String userRole) {
         Map<String, Object> authorityClaims = new HashMap<String, Object>();
         authorityClaims.put(AUTHORITIES_KEY, userRole);
         String JWT = Jwts.builder().setClaims(authorityClaims)
@@ -31,8 +30,8 @@ public class TokenProvider {
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
                 .compact();
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
+        return TOKEN_PREFIX + " " + JWT;
     }
-
 
 
     public static Authentication getAuthentication(HttpServletRequest request) {

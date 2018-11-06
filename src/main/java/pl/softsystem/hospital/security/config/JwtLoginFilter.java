@@ -1,4 +1,4 @@
-package pl.softsystem.hospital.securityJWT.venues.config;
+package pl.softsystem.hospital.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,15 +9,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import pl.softsystem.hospital.securityJWT.venues.model.securityModel.LoginUser;
+import pl.softsystem.hospital.security.securityModel.LoginUser;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static pl.softsystem.hospital.securityJWT.venues.config.TokenProvider.generateToken;
+import static pl.softsystem.hospital.security.config.TokenProvider.generateToken;
 
 
 public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
@@ -25,17 +24,18 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
     }
+
     @Override
     public Authentication attemptAuthentication(
             HttpServletRequest req, HttpServletResponse res)
-            throws AuthenticationException, IOException, ServletException {
+            throws AuthenticationException, IOException {
         LoginUser creds = new ObjectMapper()
                 .readValue(req.getInputStream(), LoginUser.class);
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
                         creds.getPassword()
-               //,         Collections.emptyList()
+                        //,         Collections.emptyList()
                 )
         );
     }
@@ -44,7 +44,7 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
     protected void successfulAuthentication(
             HttpServletRequest req,
             HttpServletResponse res, FilterChain chain,
-            Authentication auth) throws IOException, ServletException {
+            Authentication auth) {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         String userRole = null;
         for (GrantedAuthority authority : userDetails.getAuthorities()) {
@@ -52,7 +52,7 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
             if (!(userRole == null))
                 break;
         }
-        generateToken(res, auth.getName(),userRole);
+        generateToken(res, auth.getName(), userRole);
     }
 
 }

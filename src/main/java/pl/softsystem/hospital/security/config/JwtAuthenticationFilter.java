@@ -1,4 +1,4 @@
-package pl.softsystem.hospital.securityJWT.venues.config;
+package pl.softsystem.hospital.security.config;
 
 
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package pl.softsystem.hospital.securityJWT.venues.model.securityModel;
+package pl.softsystem.hospital.security.securityModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +24,6 @@ public class Role {
 
     @Column
     private String description;
-    @OneToMany(mappedBy ="roles", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "roles", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 }

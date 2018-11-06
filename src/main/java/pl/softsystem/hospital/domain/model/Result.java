@@ -26,7 +26,7 @@ public class Result {
     private Patient patient;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_patient_examination")
+    @JoinColumn(name = "id_patient_examination")
     private PatientExamination patientExamination;
 
     public Result(String value, String questionName, Patient patient, PatientExamination patientExamination) {

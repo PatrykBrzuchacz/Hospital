@@ -1,4 +1,4 @@
-package pl.softsystem.hospital.securityJWT.venues.model.securityModel;
+package pl.softsystem.hospital.security.securityModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

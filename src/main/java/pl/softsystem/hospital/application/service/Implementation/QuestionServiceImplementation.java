@@ -9,13 +9,15 @@ import pl.softsystem.hospital.domain.repository.QuestionRepository;
 import java.util.List;
 
 @Service
-public class QuestionServiceImplementation implements QuestionService{
+public class QuestionServiceImplementation implements QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
 
-    public List<Question> saveAll(List<Question> questions){
-       return questionRepository.saveAll(questions);
-    };
+    public List<Question> saveAll(List<Question> questions) {
+        return questionRepository.saveAll(questions);
+    }
+
+    ;
 
 }
