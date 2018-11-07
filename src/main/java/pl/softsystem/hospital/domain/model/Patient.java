@@ -29,7 +29,7 @@ public class Patient {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_doctor")
+    @JoinColumn(name = "id_user")
     private User user;
 
     public Patient(Long id, String name, Integer pesel) {

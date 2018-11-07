@@ -55,7 +55,7 @@ public class UserServiceImplTest {
     @Test
     public void shouldGetAuthority() {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_DOCTOR"));
         assertEquals(userService.getAuthority(userRepository.findByUsername(username)), authorities);
     }
 }

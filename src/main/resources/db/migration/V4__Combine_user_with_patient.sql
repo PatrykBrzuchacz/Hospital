@@ -15,5 +15,5 @@ alter table user
 add constraint FKrhfovtciq1l558cw6udg0h0d3 foreign key(id_role) references role (id) on delete cascade;
 
 alter table patient
-add column id_doctor bigint,
-add Foreign key (id_doctor) references user(id);
+add column id_user bigint,
+add Foreign key (id_user) references user(id);

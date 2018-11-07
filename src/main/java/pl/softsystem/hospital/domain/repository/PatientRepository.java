@@ -8,21 +8,20 @@ import pl.softsystem.hospital.domain.model.Patient;
 
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "patient", path = "patient")
+@RepositoryRestResource(collectionResourceRel = "patients", path = "patients")
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     Patient findByName(String name);
 
     Patient findByPesel(Integer pesel);
 
-    void deleteAll();
-
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     List<Patient> findAll();
 
-    Patient save(Patient patient);
 
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     void deleteById(Long id);
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    Patient getPatientById(@Param("id") Long id);
+    Patient getPatientById(Long id);
 }

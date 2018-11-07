@@ -14,7 +14,7 @@ import pl.softsystem.hospital.security.repository.UserRepository;
 
 import javax.validation.Valid;
 
-@PreAuthorize("hasRole('DOCTOR')")
+
 @RepositoryRestController
 @RequestMapping("/patients")
 public class PatientController {
@@ -28,32 +28,20 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
-    @GetMapping()
-    public @ResponseBody
-    ResponseEntity<?> getAll() {
 
-        return ResponseEntity.ok(patientRepository.findAll());
-    }
 
-    @PostMapping("/save")
+    @PostMapping()
     public ResponseEntity<?> savePatient(@Valid @RequestBody Patient patient) {
         String doctorName = SecurityContextHolder.getContext().getAuthentication().getName();
         patient.setUser(userRepository.findByUsername(doctorName));
         return ResponseEntity.ok(patientRepository.save(patient));
-
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updatePatient(@Valid @RequestBody Patient patient, @PathVariable Long id) {
         Patient pat = patientRepository.getPatientById(id);
         pat.setName(patient.getName());
         pat.setPesel(patient.getPesel());
         return ResponseEntity.ok(patientRepository.save(pat));
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deletePatient(@PathVariable Long id) {
-        patientRepository.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

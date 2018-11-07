@@ -31,6 +31,6 @@ public class User {
     private Role roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Patient> doctorPatients = new HashSet<>();
+    private Set<Patient> userPatients = new HashSet<>();
 
 }
