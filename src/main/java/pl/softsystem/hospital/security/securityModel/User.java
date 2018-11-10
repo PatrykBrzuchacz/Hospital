@@ -33,4 +33,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Patient> userPatients = new HashSet<>();
 
+    public User(long id, String username, String password, Role roles){
+        this.id=id;
+        this.username=username;
+        this.password=password;
+        this.roles=roles;
+    }
 }

@@ -9,8 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.softsystem.hospital.security.repository.RoleRepository;
 import pl.softsystem.hospital.security.repository.UserRepository;
-import pl.softsystem.hospital.security.securityModel.LoginUser;
+import pl.softsystem.hospital.security.securityModel.UserCredentials;
 import pl.softsystem.hospital.security.securityModel.User;
+import pl.softsystem.hospital.security.service.RoleService;
 import pl.softsystem.hospital.security.service.UserService;
 
 import java.util.HashSet;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleService roleService;
 
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
@@ -46,11 +47,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 
     @Override
-    public User save(LoginUser user) {
+    public User save(UserCredentials user) {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        newUser.setRoles(roleRepository.findByName("ROLE_USER"));
+        newUser.setRoles(roleService.getUserRole());
         return userRepository.save(newUser);
     }
 

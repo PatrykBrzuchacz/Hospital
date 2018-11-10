@@ -1,36 +1,98 @@
 package pl.softsystem.hospital.SecurityTest;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.security.core.Authentication;
+import pl.softsystem.hospital.security.config.TokenProvider;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static pl.softsystem.hospital.security.config.TokenProvider.generateToken;
 import static pl.softsystem.hospital.security.config.TokenProvider.getAuthentication;
-import static pl.softsystem.hospital.security.securityModel.Constants.HEADER_STRING;
 
-@RunWith(SpringRunner.class)
+
 public class TokenProviderTest {
 
-    String userRole = "ROLE_USER";
-    String username = "User";
-    MockHttpServletResponse mockHttpServletResponse = new MockHttpServletResponse();
+    final static String userRole = "ROLE_USER";
+    final static String username = "username";
+    final String TOKEN_PREFIX = "Bearer";
+    final String HEADER_STRING = "Authorization";
+    String token;
 
-    @Test
-    public void shouldGenerateToken() throws Exception {
-        assertNotNull(generateToken(mockHttpServletResponse, username, userRole));
+    MockHttpServletResponse httpServletResponse;
+    MockHttpServletRequest httpServletRequest;
+
+    @InjectMocks
+    TokenProvider tokenProvider;
+
+
+    @BeforeEach
+    void setUp() {
+        httpServletResponse = new MockHttpServletResponse();
+        httpServletRequest = new MockHttpServletRequest();
+
+        token = generateToken(username, userRole);
+
+        httpServletResponse.addHeader(HEADER_STRING, token);
+
     }
 
     @Test
-    public void shouldGetAuthentication() throws Exception {
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        String jwt = generateToken(mockHttpServletResponse, username, userRole);
-        request.addHeader(HEADER_STRING, jwt);
-        request.setRequestURI("/api/users");
-        assertNotNull(getAuthentication(request));
+    public void generateToken_Test() throws Exception {
+        assertNotNull(token);
+        assertEquals(token, generateToken(username, userRole));
+
+    }
+
+    @Test
+    public void addBearerPrefixToAuthenticationHeader_Test() throws Exception {
+        String expectedPrefix = TOKEN_PREFIX;
+        String resultPrefix = httpServletResponse.getHeader(HEADER_STRING).substring(0, 6);
+
+        assertEquals(expectedPrefix, resultPrefix);
+    }
+
+    @Test
+    public void addAuthenticationtoResponse_Test() {
+        String result = httpServletResponse.getHeader(HEADER_STRING);
+
+        assertNotNull(result);
+    }
+
+    @Test
+    public void GetAuthentication_Test() {
+        httpServletRequest.addHeader(HEADER_STRING, token);
+        Authentication resultAuthentication = getAuthentication(httpServletRequest);
+        assertAll(
+                () ->assertNotNull(resultAuthentication),
+        () ->assertEquals(username, resultAuthentication.getName()),
+                () ->       assertEquals(userRole, resultAuthentication.getAuthorities().stream().findFirst().get().getAuthority())
+        );
     }
 
 
+    @Nested
+    public class GetAuthenticationInvalid {
+
+        @Test
+        public void GetAuthenticationWhenTokenIsMissed_Test() {
+            Authentication nullAuthentication = getAuthentication(httpServletRequest);
+            assertNull(nullAuthentication);
+        }
+
+        @Test
+        public void getAuthenticationWhenBearerPrefixMissed_Test() throws Exception {
+            String bearerTokenWithoutBearerPrefix = TOKEN_PREFIX.substring(6);
+            httpServletRequest.addHeader(HEADER_STRING, bearerTokenWithoutBearerPrefix);
+
+            Authentication nullAuthentication = getAuthentication(httpServletRequest);
+            assertNull(nullAuthentication);
+        }
+
+    }
 }

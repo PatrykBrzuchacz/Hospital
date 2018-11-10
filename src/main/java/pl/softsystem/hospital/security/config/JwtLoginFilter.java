@@ -9,13 +9,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import pl.softsystem.hospital.security.securityModel.LoginUser;
+import pl.softsystem.hospital.security.securityModel.UserCredentials;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static pl.softsystem.hospital.security.config.TokenProvider.addTokenToResponse;
 import static pl.softsystem.hospital.security.config.TokenProvider.generateToken;
 
 
@@ -29,8 +30,8 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
     public Authentication attemptAuthentication(
             HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException, IOException {
-        LoginUser creds = new ObjectMapper()
-                .readValue(req.getInputStream(), LoginUser.class);
+        UserCredentials creds = new ObjectMapper()
+                .readValue(req.getInputStream(), UserCredentials.class);
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
@@ -52,7 +53,8 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
             if (!(userRole == null))
                 break;
         }
-        generateToken(res, auth.getName(), userRole);
+        String token = generateToken(auth.getName(), userRole);
+        addTokenToResponse(res,token);
     }
 
 }

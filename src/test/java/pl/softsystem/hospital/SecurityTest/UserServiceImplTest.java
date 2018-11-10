@@ -1,61 +1,102 @@
 package pl.softsystem.hospital.SecurityTest;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.softsystem.hospital.security.repository.UserRepository;
-import pl.softsystem.hospital.security.securityModel.LoginUser;
+import pl.softsystem.hospital.security.securityModel.Role;
+import pl.softsystem.hospital.security.securityModel.UserCredentials;
+import pl.softsystem.hospital.security.securityModel.User;
+import pl.softsystem.hospital.security.service.RoleService;
 import pl.softsystem.hospital.security.service.implementation.UserServiceImpl;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+
 public class UserServiceImplTest {
 
-    LoginUser user;
-    String username = "TestUser";
-    @Autowired
-    private UserServiceImpl userService;
-    @Autowired
-    private UserRepository userRepository;
+    @Mock
+    UserRepository userRepository;
 
-    @Before
-    public void setUp() throws Exception {
-        user = new LoginUser(username, "TestUser");
-        userService.save(user);
+    @Mock
+    BCryptPasswordEncoder bcryptEncoder;
 
-    }
+    @Mock
+    RoleService roleService;
 
-    @After
-    public void tearDown() throws Exception {
-        if (userRepository.existsUserByUsername(username))
-            userRepository.deleteById(userRepository.findByUsername(username).getId());
-    }
+    @InjectMocks
+    UserServiceImpl userService;
 
-    @Test
-    public void shouldAddUser() throws Exception {
-        String actual = userRepository.findByUsername(username).getUsername();
-        assertEquals(username, actual);
 
-    }
+    User user;
+    UserCredentials userCredentials;
+    Role role;
+    String password;
+    User user1;
 
-    @Test
-    public void shouldLoadUser() throws Exception {
-        assertNotNull(userService.loadUserByUsername(username));
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.initMocks(this);
+
+        role = new Role(3L, "ROLE_USER", "User Role");
+        user = new User(1L, "name", "password", role);
+        userCredentials = new UserCredentials("name", "pd");
+        user1 = new User();
     }
 
     @Test
-    public void shouldGetAuthority() {
-        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_DOCTOR"));
-        assertEquals(userService.getAuthority(userRepository.findByUsername(username)), authorities);
+    public void saveUser_Test() {
+        when(userRepository.save(any(User.class))).thenReturn(user);
+        User insertedUser = userService.save(userCredentials);
+        assertAll(
+                () -> Assertions.assertNotNull(insertedUser),
+                () -> Assertions.assertEquals(user, insertedUser)
+        );
+    }
+
+    @Test
+    public void saveUserFail_Test() {
+        when(userRepository.save(any(User.class))).thenReturn(null);
+        assertNull(userService.save(userCredentials));
+    }
+
+    @Test
+    public void getAuthority_Test() {
+        assertAll(
+                () -> Assertions.assertNotNull(userService.getAuthority(user)),
+                () -> Assertions.assertEquals(user.getRoles().getName(), "ROLE_USER")
+        );
+    }
+
+    @Test
+    public void getAuthorityFailUserWithoutRole_Test() {
+        assertThrows(NullPointerException.class, () -> {
+            userService.getAuthority(user1);
+        });
+    }
+
+    @Test
+    public void loadUser_Test() {
+        when(userRepository.findByUsername(anyString())).thenReturn(user);
+        Assertions.assertNotNull(userService.loadUserByUsername("exampleUsername"));
+    }
+
+    @Test
+    public void loadUserFail_Test() {
+        when(userRepository.findByUsername(anyString())).thenReturn(user1);
+        assertThrows(NullPointerException.class, () -> {
+            userService.loadUserByUsername("exampleUsername");
+        });
     }
 }

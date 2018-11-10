@@ -21,7 +21,7 @@ import static pl.softsystem.hospital.security.securityModel.Constants.*;
 public class TokenProvider {
 
 
-    public static String generateToken(HttpServletResponse res, String username, String userRole) {
+    public static String generateToken( String username, String userRole) {
         Map<String, Object> authorityClaims = new HashMap<String, Object>();
         authorityClaims.put(AUTHORITIES_KEY, userRole);
         String JWT = Jwts.builder().setClaims(authorityClaims)
@@ -29,8 +29,10 @@ public class TokenProvider {
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS * 1000))
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
                 .compact();
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
         return TOKEN_PREFIX + " " + JWT;
+    }
+    public static void addTokenToResponse(HttpServletResponse res,String token){
+        res.addHeader(HEADER_STRING, token);
     }
 
 

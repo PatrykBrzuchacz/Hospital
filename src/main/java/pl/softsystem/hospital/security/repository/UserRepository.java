@@ -3,8 +3,6 @@ package pl.softsystem.hospital.security.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Repository;
-import pl.softsystem.hospital.security.securityModel.LoginUser;
 import pl.softsystem.hospital.security.securityModel.User;
 
 import java.util.List;
